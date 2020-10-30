@@ -1,32 +1,27 @@
-import React from 'react';
-import Pagination from './Pagination';
+import React from "react";
 
-const Posts = ({ posts, onMealSelect,showSearch,rating,gerne,paginate,loading }) => {
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
-
+const displayShows = ({ shows, onShowSelect, searchFlag }) => {
   return (
     <div class="row">
-      
-          {showSearch?posts&&posts.map(post => (
-            <div>
-        <img src={post.show.image&&post.show.image.medium} onClick={(e) => onMealSelect(post.show)}/>
-              </div>
-      )):
-      
-      posts&&posts.map(post => (
-       <div class="col-lg-3">
-     <img src={post.image&&post.image.medium} onClick={(e) => onMealSelect(post)}/>
-     
-     </div>
-))
-}
-
+      {shows.map((show) =>
+        show && searchFlag ? (
+          <div>
+            <img id="image"
+              src={show.show && show.show.image && show.show.image.medium}
+              onClick={() => onShowSelect(show.show)}
+            />
+          </div>
+        ) : (
+          <div class="col-lg-3">
+            <img id="image2"
+              src={show.image && show.image.medium}
+              onClick={() => onShowSelect(show)}
+            />
+          </div>
+        )
+      )}
     </div>
-   
-
   );
 };
 
-export default Posts;
+export default displayShows;
