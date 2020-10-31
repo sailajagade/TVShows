@@ -1,0 +1,129 @@
+#inputbox{
+    font-size: 23px;
+    padding: 16.5px 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: #666;
+    background: #fff;
+    font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Float four columns side by side */
+  .column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+    margin-bottom: 30px;
+  }
+  
+  /* Remove extra left and right margins, due to padding */
+  .row {margin: 0 -5px;}
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive columns */
+  /* @media screen and (max-width: 992px) {
+    .col-lg-3 {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+      max-width: 20%;
+    }
+  } */
+  @media (min-width: 992px){
+.col-lg-3 {
+    /* flex: 0 0 25%; */
+    max-width: 18%;
+}
+  }
+  @media (min-width: 992px){
+    .episode {
+        /* flex: 0 0 25%; */
+        max-width: 25%;
+    }
+      }
+  .btn{
+      color: white;
+      font-size: large;
+    
+  }
+  .btn:hover {
+    background: white;
+  }
+  .arr{
+    background:rgb(34, 37, 57);
+    display: flex;
+    text-align: center;
+  }
+  .arr1{
+    background: rgb(51, 53, 69);
+  }
+ #serachbox,#inputbox2,#inputbox3{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px 0px 0px 4px;
+    box-sizing: border-box;
+ }
+ #serachbox
+ {
+    background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    text-indent: 18px;
+    background-size: 26px;
+    background-position: right center;
+ }
+ #serachbox:focus {
+    background-image:none;
+    text-indent:0px
+    }
+ #inp{
+    width: 50%;
+    padding: 12px 20px;
+    margin: 0px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 40px 40px 40px 40px;
+    overflow: hidden;
+    background:rgb(94, 138, 255);
+    color: white;
+    font-size: large;
+ }
+ #serachbox::-webkit-input-placeholder {
+    font-size: 18px;
+    line-height: 3;
+    text-align: center;
+}
+  /* Style the counter cards */
+  .card {
+    text-align: center;
+    width: 250px;
+    position: relative;
+    flex-direction: column;
+    min-width: 0;
+    /* word-wrap: break-word; */
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 5px;
+    overflow: hidden;
+   
+     }
