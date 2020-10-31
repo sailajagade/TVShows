@@ -9,7 +9,7 @@ const Pagination = ({ postsPerPage, randomMeal, totalPosts, paginate }) => {
 
   return (
     <nav>
-      <ul className="pagination">
+      <ul className="pagination  pagination-xs flex-xs-wrap" style={{flexWrap:'wrap'}}>
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
             <a id="atag" onClick={() => paginate(number)} href="#" className="page-link">

@@ -5,6 +5,7 @@ import DisplayShowDetails from "../components/displayShowDetails";
 import { FETCHALLSHOWS, SEARCHRESULTS, SHOWSELECT } from "../Api/url";
 import SearchComponent from "../components/SearchComponent";
 import { getData } from "../Api/Api";
+import Sidenav from "../components/sidenav";
 
 class showContainer extends Component {
   constructor(props) {
@@ -18,6 +19,8 @@ class showContainer extends Component {
       showData: [],
       showEpisode: "",
       tabsData: [],
+      filteredData:[],
+      filterShow:false
     };
     this.indexOfLastPost = "";
     this.indexOfFirstPost = "";
@@ -83,8 +86,12 @@ class showContainer extends Component {
 
   filterRatingAndGerne = () => {
     let filteredShows = [];
+    this.fetchShows();
+    console.log('click')
     let gernevalue = document.getElementById("inputbox2")&&document.getElementById("inputbox2").value;
     let ratingvalue = document.getElementById("inputbox3")&&document.getElementById("inputbox3").value;
+    console.log(ratingvalue,gernevalue)
+    
     this.state.shows.map((post) =>
       ratingvalue && gernevalue
         ? Math.floor(post.rating.average) >= ratingvalue &&
@@ -98,19 +105,24 @@ class showContainer extends Component {
           : ""
         : ""
     );
+    console.log(filteredShows)
     if (filteredShows.length > 0)
       this.setState({
-        shows: filteredShows,
+        filteredData: filteredShows,
         currentPage: 1,
         showDetails: false,
+        filterShow:true
       });
   };
 
   Pagination = () => {
-    const { shows, tabsData,currentPage,postsPerPage } = this.state;
+    const { shows, tabsData,currentPage,postsPerPage,filterShow,filteredData } = this.state;
     this.indexOfLastPost =currentPage *postsPerPage;
     this.indexOfFirstPost = this.indexOfLastPost - postsPerPage;
-    this.currentPosts = shows.slice(
+    this.currentPosts = !filterShow?shows.slice(
+      this.indexOfFirstPost,
+      this.indexOfLastPost
+    ):filteredData.slice(
       this.indexOfFirstPost,
       this.indexOfLastPost
     );
@@ -121,6 +133,7 @@ class showContainer extends Component {
   routeback = () => {
     this.setState({ showDetails: false });
     this.fetchShows();
+   document.getElementById("serachbox").value='';
   };
 
   render() {
@@ -128,7 +141,7 @@ class showContainer extends Component {
 
     this.Pagination();
     return (
-      <div className="container mt-5">
+      <div class="">
         <SearchComponent
           onGerneSelect={this.filterRatingAndGerne}
           onRatingSelect={this.filterRatingAndGerne}
@@ -136,7 +149,7 @@ class showContainer extends Component {
         />
         {showDetails ? (
           <div>
-            <div class="row">
+            <div class="">
               <DisplayShowDetails
                 mealInfo={showData}
                 onShowSearch={this.onShowSearch}
@@ -154,17 +167,24 @@ class showContainer extends Component {
             </div>
           </div>
         ) : (
-          <div>
+          <div class="row container" style={{marginTop:'20px'}}>
+            <div class="col-lg-2">
+              <Sidenav  filterRatingAndGerne={this.filterRatingAndGerne}
+          onShowSearch={this.onShowSearch}/>
+              </div>
+              <div class="col-lg-10">
             <Shows
-              shows={searchFlag ? shows : this.currentPosts}
+              shows={searchFlag ? shows :this.currentPosts}
               onShowSelect={this.onShowSelect}
               searchFlag={searchFlag}
             />
-            <Pagination
+            <div class="container">          <Pagination
               postsPerPage={postsPerPage}
-              totalPosts={shows.length}
+              totalPosts={this.state.filterShow?this.state.filteredData.length:shows.length}
               paginate={this.paginate}
             />
+            </div>
+         </div>
           </div>
         )}
       </div>

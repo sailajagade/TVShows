@@ -1,8 +1,9 @@
 import React from "react";
+import './Shows.css'
 
 const SearchComponent = (props) => {
   const { onGerneSelect, onRatingSelect, onShowSearch } = props;
-  const gerneaarr = ["Drama", "Action", "Science-Fiction"];
+  const gerneaarr = ["Gerne","Drama", "Action", "Science-Fiction"];
   const Ratingoptions = {
     1: "1+",
     2: "2+",
@@ -15,26 +16,34 @@ const SearchComponent = (props) => {
     9: "9+",
   };
   return (
-    <div class="row">
-      <h1 className="text-primary mb-3">TV Shows</h1>
-      <div>
-        <select name="cars" id="inputbox2" onBlur={onGerneSelect}>
+    <div class="row arr1" >
+      <div class="col-lg-3" style={{paddingLeft:'50px'}}><h1 className="text-primary mt-3">TV Shows</h1></div>
+      <div class="col-lg-5 col-md-12 col-sm-12 col-xs-8" style={{padding:'0px'}}>
+       <input
+        id="serachbox"
+        placeholder=""
+        onKeyUp={(event) => onShowSearch(event)}
+      />
+     
+      </div>
+      {/* <div class="col-lg-2 col-md-12 col-sm-12 col-xs-2" style={{padding:'0px'}}>  <span><button
+        id="inp"
+        onKeyUp={(event) => onShowSearch(event)}
+      > <i class="fa fa-search" style={{fontSize:"12px"}}></i>  </button></span></div> */}
+      {/* <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <select name="cars" id="inp" onBlur={onGerneSelect}>
           {gerneaarr.map((opt) => (
             <option value={opt}>{opt}</option>
           ))}
         </select>
       </div>
-      <select name="cars" id="inputbox3" onBlur={onRatingSelect}>
+      <div class="col-lg-1 col-md-12 col-sm-12 col-xs-8">  <select name="cars" id="inp" onBlur={onRatingSelect}>
         {Object.keys(Ratingoptions).map((item) => (
           <option value={item}>{Ratingoptions[item]}</option>
         ))}
-      </select>
-
-      <input
-        id="inputbox"
-        placeholder=" Search Shows"
-        onKeyUp={(event) => onShowSearch(event)}
-      />
+      </select></div>
+      
+       */}
     </div>
   );
 };
