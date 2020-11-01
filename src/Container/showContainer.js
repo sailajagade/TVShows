@@ -19,8 +19,8 @@ class showContainer extends Component {
       showData: [],
       showEpisode: "",
       tabsData: [],
-      filteredData:[],
-      filterShow:false
+      filteredData: [],
+      filterShow: false,
     };
     this.indexOfLastPost = "";
     this.indexOfFirstPost = "";
@@ -71,7 +71,7 @@ class showContainer extends Component {
   };
 
   getShowDetails = async (e, id, tabName = "") => {
-    const url = tabName ? SHOWSELECT + id + '/'+tabName : SHOWSELECT + id;
+    const url = tabName ? SHOWSELECT + id + "/" + tabName : SHOWSELECT + id;
     getData(url).then((res) => {
       this.setState({
         showEpisode: e,
@@ -87,45 +87,49 @@ class showContainer extends Component {
   filterRatingAndGerne = () => {
     let filteredShows = [];
     this.fetchShows();
-    console.log('click')
-    let gernevalue = document.getElementById("inputbox2")&&document.getElementById("inputbox2").value;
-    let ratingvalue = document.getElementById("inputbox3")&&document.getElementById("inputbox3").value;
-    console.log(ratingvalue,gernevalue)
-    
+    let gernevalue =
+      document.getElementById("inputbox2") &&
+      document.getElementById("inputbox2").value;
+    let ratingvalue =
+      document.getElementById("inputbox3") &&
+      document.getElementById("inputbox3").value;
+
     this.state.shows.map((post) =>
       ratingvalue && gernevalue
-        ? Math.floor(post.rating.average) >= ratingvalue &&
-          post.genres.includes(gernevalue)
+        ? Math.floor(post && post.rating && post.rating.average) >=
+            ratingvalue && post.genres.includes(gernevalue)
           ? filteredShows.push(post)
           : ""
         : ratingvalue || gernevalue
-        ? Math.floor(post.rating.average) >= ratingvalue ||
-          post.genres.includes(gernevalue)
+        ? Math.floor(post && post.rating && post.rating.average) >=
+            ratingvalue || post.genres.includes(gernevalue)
           ? filteredShows.push(post)
           : ""
         : ""
     );
-    console.log(filteredShows)
     if (filteredShows.length > 0)
       this.setState({
         filteredData: filteredShows,
         currentPage: 1,
         showDetails: false,
-        filterShow:true
+        filterShow: true,
       });
   };
 
   Pagination = () => {
-    const { shows, tabsData,currentPage,postsPerPage,filterShow,filteredData } = this.state;
-    this.indexOfLastPost =currentPage *postsPerPage;
+    const {
+      shows,
+      tabsData,
+      currentPage,
+      postsPerPage,
+      filterShow,
+      filteredData,
+    } = this.state;
+    this.indexOfLastPost = currentPage * postsPerPage;
     this.indexOfFirstPost = this.indexOfLastPost - postsPerPage;
-    this.currentPosts = !filterShow?shows.slice(
-      this.indexOfFirstPost,
-      this.indexOfLastPost
-    ):filteredData.slice(
-      this.indexOfFirstPost,
-      this.indexOfLastPost
-    );
+    this.currentPosts = !filterShow
+      ? shows.slice(this.indexOfFirstPost, this.indexOfLastPost)
+      : filteredData.slice(this.indexOfFirstPost, this.indexOfLastPost);
     this.tabData =
       Array.isArray(tabsData) &&
       tabsData.slice(this.indexOfFirstPost, this.indexOfLastPost);
@@ -133,11 +137,20 @@ class showContainer extends Component {
   routeback = () => {
     this.setState({ showDetails: false });
     this.fetchShows();
-   document.getElementById("serachbox").value='';
+    if (document.getElementById("searchbox"))
+      document.getElementById("searchbox").value = "";
   };
 
   render() {
-    const { postsPerPage, shows, searchFlag ,tabsData,showData,showDetails,showEpisode} = this.state;
+    const {
+      postsPerPage,
+      shows,
+      searchFlag,
+      tabsData,
+      showData,
+      showDetails,
+      showEpisode,
+    } = this.state;
 
     this.Pagination();
     return (
@@ -149,7 +162,7 @@ class showContainer extends Component {
         />
         {showDetails ? (
           <div>
-            <div class="">
+            <div>
               <DisplayShowDetails
                 mealInfo={showData}
                 onShowSearch={this.onShowSearch}
@@ -167,24 +180,32 @@ class showContainer extends Component {
             </div>
           </div>
         ) : (
-          <div class="row container" style={{marginTop:'20px'}}>
-            <div class="col-lg-2">
-              <Sidenav  filterRatingAndGerne={this.filterRatingAndGerne}
-          onShowSearch={this.onShowSearch}/>
-              </div>
-              <div class="col-lg-10">
-            <Shows
-              shows={searchFlag ? shows :this.currentPosts}
-              onShowSelect={this.onShowSelect}
-              searchFlag={searchFlag}
-            />
-            <div class="container">          <Pagination
-              postsPerPage={postsPerPage}
-              totalPosts={this.state.filterShow?this.state.filteredData.length:shows.length}
-              paginate={this.paginate}
-            />
+          <div class="row  padding-top">
+            <div class="col-lg-3">
+              <Sidenav
+                filterRatingAndGerne={this.filterRatingAndGerne}
+                onShowSearch={this.onShowSearch}
+              />
             </div>
-         </div>
+            <div class="col-lg-9">
+              <Shows
+                shows={searchFlag ? shows : this.currentPosts}
+                onShowSelect={this.onShowSelect}
+                searchFlag={searchFlag}
+              />
+              <div class="container">
+                {" "}
+                <Pagination
+                  postsPerPage={postsPerPage}
+                  totalPosts={
+                    this.state.filterShow
+                      ? this.state.filteredData.length
+                      : shows.length
+                  }
+                  paginate={this.paginate}
+                />
+              </div>
+            </div>
           </div>
         )}
       </div>

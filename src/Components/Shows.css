@@ -12,6 +12,62 @@
 * {
     box-sizing: border-box;
   }
+  .padding-top{
+   margin-top:20px
+  }
+  .padding-left{
+  padding-left:0px;
+  /* font-family: Georgia, 'Times New Roman', Times, serif; */
+  font-size: 14px;
+  font-weight: 300px;
+  }
+  .padding-bottom{
+   padding-bottom: 20px;
+   padding-left: 37px;
+  }
+  .pagination{
+    flex-wrap:wrap
+  }
+  .heading-Tv{
+    padding-left:20px;
+    padding-top: 18px;
+  }
+  .detailsCard{
+  
+  flex-wrap:wrap;
+  background: #F7F7F7;
+  font-family: 'Roboto';
+  }
+  .summary{
+    font-size: medium;
+   margin-left:16px;
+   font-family: 'Roboto';
+  }
+  .cast
+  {
+    font-size: medium;
+   font-family: 'Roboto';
+  }
+  .alignLeft{
+    text-align: left;
+  }
+  .episode{
+    font-size: 14px;
+   font-family: 'Roboto';
+   text-align: left;
+   align-content: flex-start;
+   justify-content: left;
+  }
+  .pagination a {
+    font-size: 16px;
+    margin: 4px 4px;
+  }
+ 
+  .h1{
+    margin-bottom:30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 30px
+  }
   
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -35,27 +91,13 @@ body {
     clear: both;
   }
   
-  /* Responsive columns */
-  /* @media screen and (max-width: 992px) {
-    .col-lg-3 {
-      width: 100%;
-      display: block;
-      margin-bottom: 20px;
-      max-width: 20%;
-    }
-  } */
   @media (min-width: 992px){
 .col-lg-3 {
     /* flex: 0 0 25%; */
-    max-width: 18%;
+    max-width: 22%;
 }
   }
-  @media (min-width: 992px){
-    .episode {
-        /* flex: 0 0 25%; */
-        max-width: 25%;
-    }
-      }
+ 
   .btn{
       color: white;
       font-size: large;
@@ -72,7 +114,7 @@ body {
   .arr1{
     background: rgb(51, 53, 69);
   }
- #serachbox,#inputbox2,#inputbox3{
+ #searchbox,#inputbox2,#inputbox3{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -80,8 +122,9 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px 0px 0px 4px;
     box-sizing: border-box;
+    font-size: large;
  }
- #serachbox
+ #searchbox
  {
     background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
     background-size:contain;
@@ -90,7 +133,7 @@ body {
     background-size: 26px;
     background-position: right center;
  }
- #serachbox:focus {
+ #searchbox:focus {
     background-image:none;
     text-indent:0px
     }
@@ -101,13 +144,13 @@ body {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    border-radius: 40px 40px 40px 40px;
+    border-radius: 10px 10px 10px 10px;
     overflow: hidden;
     background:rgb(94, 138, 255);
     color: white;
     font-size: large;
  }
- #serachbox::-webkit-input-placeholder {
+ #searchbox::-webkit-input-placeholder {
     font-size: 18px;
     line-height: 3;
     text-align: center;
@@ -115,7 +158,7 @@ body {
   /* Style the counter cards */
   .card {
     text-align: center;
-    width: 250px;
+    /* width: 300px; */
     position: relative;
     flex-direction: column;
     min-width: 0;

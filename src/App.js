@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import Container from './Container/showContainer';
+import './App.css';
+import ShowContainer from './Container/showContainer';
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
+ 
     <BrowserRouter>
     <Switch>
-    <Route path="/" component={Container} exact />
+    <Route path="/" exact component={ShowContainer} />
   </Switch>
   </BrowserRouter>
-  </React.Fragment>
   );
     }
 }

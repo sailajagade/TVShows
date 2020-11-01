@@ -7,27 +7,30 @@ import ShowContainer from "../Container/showContainer";
 configure({ adapter: new Adapter() });
 
 describe("App component", () => {
-    
   const wrapper = mount(<ShowContainer />);
   it("test for component render", () => {
     wrapper.setState({ showDetails: true });
-    wrapper.find('#Cast').simulate('click');
-    wrapper.find('#img').simulate('click');
-    wrapper.setState({ shows: [{show:{image:{medium:'http://abc'}}}] });
+    wrapper.find("#Cast").simulate("click");
+    // wrapper.find('#img').simulate('click');
+    wrapper.setState({
+      shows: [{ show: { image: { medium: "http://abc" } } }],
+    });
     wrapper.setState({ searchFlag: true });
     wrapper.setState({ searchFlag: false });
-    wrapper.setState({ showEpisode: 'Episode' });
-    
-    wrapper.setState({ tabsData: [{image:{medium:'http://abc'}}] });
-    wrapper.setState({ showEpisode: 'Cast' });
-    
-    wrapper.setState({ tabsData: [{character:{medium:'http://abc'}}] });
-    wrapper.setState({ showEpisode: 'Crew' });
-    
-    wrapper.setState({ tabsData: [{person:{medium:'http://abc'}}] });
-    wrapper.setState({ showEpisode: 'Gallery' });
-    wrapper.setState({ tabsData: [{resolutions:{medium:{url:'http://abc'}}}] });
-    wrapper.find('#inputbox').prop('onKeyUp')({ key: 'Enter' }) 
+    wrapper.setState({ showEpisode: "Episode" });
+
+    wrapper.setState({ tabsData: [{ image: { medium: "http://abc" } }] });
+    wrapper.setState({ showEpisode: "Cast" });
+
+    wrapper.setState({ tabsData: [{ character: { medium: "http://abc" } }] });
+    wrapper.setState({ showEpisode: "Crew" });
+
+    wrapper.setState({ tabsData: [{ person: { medium: "http://abc" } }] });
+    wrapper.setState({ showEpisode: "Gallery" });
+    wrapper.setState({
+      tabsData: [{ resolutions: { medium: { url: "http://abc" } } }],
+    });
+    wrapper.find("#searchbox").prop("onKeyUp")({ key: "Enter" });
 
     expect(wrapper).toBeDefined();
   });
@@ -51,8 +54,8 @@ describe("App component", () => {
   it("test for getShowDetails ()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "getShowDetails");
     // const e =  "dfdf";
-    wrapper.instance().getShowDetails('e',1,'');
-    expect(addMock).toHaveBeenCalledWith('e',1,'');
+    wrapper.instance().getShowDetails("e", 1, "");
+    expect(addMock).toHaveBeenCalledWith("e", 1, "");
   });
   it("test for paginate ()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "paginate");
@@ -61,14 +64,13 @@ describe("App component", () => {
   });
   it("test for  filterRatingAndGerne ()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "filterRatingAndGerne");
-    wrapper.instance(). filterRatingAndGerne();
+    wrapper.instance().filterRatingAndGerne();
     expect(addMock).toHaveBeenCalledWith();
   });
   it("test for  routeBack ()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "routeback");
-    wrapper.instance(). routeback();
+    wrapper.instance().routeback();
 
     expect(addMock).toHaveBeenCalledWith();
   });
-  
 });
