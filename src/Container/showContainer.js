@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Shows from "../components/displayShows";
-import Pagination from "../components/Pagination";
-import DisplayShowDetails from "../components/displayShowDetails";
+import Shows from "../Components/displayShows";
+import Pagination from "../Components/Pagination";
+import DisplayShowDetails from "../Components/displayShowDetails";
 import { FETCHALLSHOWS, SEARCHRESULTS, SHOWSELECT } from "../Api/url";
-import SearchComponent from "../components/SearchComponent";
+import SearchComponent from "../Components/SearchComponent";
 import { getData } from "../Api/Api";
-import Sidenav from "../components/sidenav";
+import Sidenav from "../Components/sidenav";
 
 class showContainer extends Component {
   constructor(props) {
