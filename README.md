@@ -34,5 +34,5 @@ npm run build
 
 ### Unit test 
 ```
-npm run test
+npm run test -- --coverage --watchAll
 ```
