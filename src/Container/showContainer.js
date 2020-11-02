@@ -84,25 +84,25 @@ class showContainer extends Component {
     this.setState({ currentPage: pageNumber });
   };
 
-  filterRatingAndGerne = () => {
+  filterRatingAndgenre = () => {
     let filteredShows = [];
     this.fetchShows();
-    let gernevalue =
-      document.getElementById("inputbox2") &&
-      document.getElementById("inputbox2").value;
+    let genrevalue =
+      document.getElementById("genre") &&
+      document.getElementById("genre").value;
     let ratingvalue =
-      document.getElementById("inputbox3") &&
-      document.getElementById("inputbox3").value;
+      document.getElementById("rating") &&
+      document.getElementById("rating").value;
 
     this.state.shows.map((post) =>
-      ratingvalue && gernevalue
+      ratingvalue && genrevalue
         ? Math.floor(post && post.rating && post.rating.average) >=
-            ratingvalue && post.genres.includes(gernevalue)
+            ratingvalue && post.genres.includes(genrevalue)
           ? filteredShows.push(post)
           : ""
-        : ratingvalue || gernevalue
+        : ratingvalue || genrevalue
         ? Math.floor(post && post.rating && post.rating.average) >=
-            ratingvalue || post.genres.includes(gernevalue)
+            ratingvalue || post.genres.includes(genrevalue)
           ? filteredShows.push(post)
           : ""
         : ""
@@ -154,14 +154,14 @@ class showContainer extends Component {
 
     this.Pagination();
     return (
-      <div class="">
+      <div >
         <SearchComponent
-          onGerneSelect={this.filterRatingAndGerne}
-          onRatingSelect={this.filterRatingAndGerne}
+          ongenreSelect={this.filterRatingAndgenre}
+          onRatingSelect={this.filterRatingAndgenre}
           onShowSearch={this.onShowSearch}
         />
         {showDetails ? (
-          <div>
+        
             <div>
               <DisplayShowDetails
                 mealInfo={showData}
@@ -178,16 +178,16 @@ class showContainer extends Component {
                 routeback={this.routeback}
               />
             </div>
-          </div>
+         
         ) : (
-          <div class="row  padding-top">
-            <div class="col-lg-3">
+          <div class="row">
+            <div class="col-lg-2">
               <Sidenav
-                filterRatingAndGerne={this.filterRatingAndGerne}
+                filterRatingAndgenre={this.filterRatingAndgenre}
                 onShowSearch={this.onShowSearch}
               />
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-10">
               <Shows
                 shows={searchFlag ? shows : this.currentPosts}
                 onShowSelect={this.onShowSelect}

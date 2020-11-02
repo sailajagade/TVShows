@@ -1,9 +1,9 @@
 import React from "react";
-import "./Shows.css";
+import "../Css/Shows.css";
 
 const sidenav = (props) => {
-  const { filterRatingAndGerne } = props;
-  const gerneaarr = [
+  const { filterRatingAndgenre } = props;
+  const genreOptions = [
     "",
     "Drama",
     "Action",
@@ -13,7 +13,7 @@ const sidenav = (props) => {
     "History",
     "Nature",
   ];
-  const Ratingoptions = {
+  const RatingOptions = {
     0: "",
     1: "1+",
     2: "2+",
@@ -27,31 +27,30 @@ const sidenav = (props) => {
   };
   return (
     <div class="row mt-5 ml-3">
-      <h1 class="h1">
+      <h1 >
         <b>Filter</b>
       </h1>
-      <div>
+      <div class="mt-3">
         <label>
-          <h3>Gerne:</h3>
+          <h3>Genre:</h3>
         </label>
-        <select name="cars" id="inputbox2">
-          {gerneaarr.map((opt) => (
+        <select id="genre">
+          {genreOptions.map((opt) => (
             <option value={opt}>{opt}</option>
           ))}
         </select>
         <label>
           <h3>Rating:</h3>
         </label>
-        <select name="cars" id="inputbox3">
-          {Object.keys(Ratingoptions).map((item) => (
-            <option value={item}>{Ratingoptions[item]}</option>
+        <select  id="rating">
+          {Object.keys(RatingOptions).map((opt) => (
+            <option value={opt}>{RatingOptions[opt]}</option>
           ))}
         </select>
-        <div>
-          <button id="inp" onClick={filterRatingAndGerne}>
+                 <button id="button" onClick={filterRatingAndgenre}>
             Filter
           </button>
-        </div>
+       
       </div>
     </div>
   );

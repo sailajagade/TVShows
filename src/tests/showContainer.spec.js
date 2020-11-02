@@ -62,9 +62,9 @@ describe("App component", () => {
     wrapper.instance().paginate(3);
     expect(addMock).toHaveBeenCalledWith(3);
   });
-  it("test for  filterRatingAndGerne ()", () => {
-    const addMock = jest.spyOn(wrapper.instance(), "filterRatingAndGerne");
-    wrapper.instance().filterRatingAndGerne();
+  it("test for  filterRatingAndgenre ()", () => {
+    const addMock = jest.spyOn(wrapper.instance(), "filterRatingAndgenre");
+    wrapper.instance().filterRatingAndgenre();
     expect(addMock).toHaveBeenCalledWith();
   });
   it("test for  routeBack ()", () => {

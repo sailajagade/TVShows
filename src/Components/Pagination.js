@@ -1,6 +1,6 @@
 import React from "react";
 
-const Pagination = ({ postsPerPage, randomMeal, totalPosts, paginate }) => {
+const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -12,7 +12,7 @@ const Pagination = ({ postsPerPage, randomMeal, totalPosts, paginate }) => {
       <ul className="pagination  pagination-xs flex-xs-wrap" >
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <a id="atag" onClick={() => paginate(number)} href="#" className="page-link">
+            <a  onClick={() => paginate(number)} href="#" className="page-link">
               {number}
             </a>
           </li>
