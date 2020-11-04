@@ -6,22 +6,22 @@
   import "../../Css/Shows.css";
 
 const MainComponent = (props ) => {
-    const {mealInfo,onShowSelect,showEpisode}=props
+    const {showData,onShowSelect,showEpisode}=props
   return (
    
 <div>{showEpisode === "Main" || showEpisode === "" ? (
     <div>
       <div class="col-lg-4">
         <div class="card">
-          <img
+          <img id="mainImage"
             
-            src={mealInfo&&mealInfo.image && mealInfo.image.medium}
-            onClick={() => onShowSelect(mealInfo)}
+            src={showData&&showData.image && showData.image.medium}
+            onClick={() => onShowSelect(showData)}
           />
         </div>
       </div>
       <div class="col-lg-4 fontStyle">
-        {mealInfo&&mealInfo.summary && mealInfo.summary.replace(/<[^>]+>/g, "")}
+        {showData&&showData.summary && showData.summary.replace(/<[^>]+>/g, "")}
       </div>
 
       <div class="col-lg-4 detailsCard">
@@ -32,50 +32,50 @@ const MainComponent = (props ) => {
         <div class="mb-4">
           <h4>
             <b>Network:</b>
-            {mealInfo.network && mealInfo.network.name},
-            {mealInfo.network && mealInfo.network.country.code}
+            {showData.network && showData.network.name},
+            {showData.network && showData.network.country.code}
           </h4>{" "}
         </div>
         <div class="mb-4">
           {" "}
           <h4>
             <b>Schedule:</b>
-            {mealInfo&&mealInfo.schedule &&
-              mealInfo.schedule.days.map((day) => day)}{" "}
-            at {mealInfo.schedule && mealInfo.schedule.time}
+            {showData&&showData.schedule &&
+              showData.schedule.days.map((day) => day)}{" "}
+            at {showData.schedule && showData.schedule.time}
           </h4>{" "}
         </div>
         <div class="mb-4">
           {" "}
           <h4>
             <b>Status:</b>
-            {mealInfo.status}
+            {showData.status}
           </h4>{" "}
         </div>
         <div class="mb-4">
           <h4>
             <b>Language:</b>
-            {mealInfo && mealInfo.language}
+            {showData && showData.language}
           </h4>{" "}
         </div>
         <div class="mb-4">
           {" "}
           <h4>
             <b>Show Type:</b>
-            {mealInfo.type}
+            {showData.type}
           </h4>{" "}
         </div>
         <div class="mb-4">
           <h4>
             <b>genres:</b>
-            {mealInfo&&mealInfo.genres &&
-              mealInfo.genres.map((genre) => genre + " " + "|" + " ")}
+            {showData&&showData.genres &&
+              showData.genres.map((genre) => genre + " " + "|" + " ")}
           </h4>{" "}
         </div>
         <div class="mb-4">
           <h4>
             <b>Official Site:</b>
-            {mealInfo.officialSite}
+            {showData.officialSite}
           </h4>{" "}
         </div>
       </div>

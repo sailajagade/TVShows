@@ -164,7 +164,7 @@ class showContainer extends Component {
         
             <div>
               <DisplayShowDetails
-                mealInfo={showData}
+                showData={showData}
                 onShowSearch={this.onShowSearch}
                 onShowSelect={this.onShowSelect}
                 showDetails={showDetails}

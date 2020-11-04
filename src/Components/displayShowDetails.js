@@ -8,7 +8,7 @@ import Pagination from "./Pagination";
 import "../Css/Shows.css";
 
 function DisplayShowDetails(props) {
-  const { mealInfo, tabsData,showEpisode,onShowSelect,episodeLength,paginate} = props;
+  const { showData, tabsData,showEpisode,onShowSelect,episodeLength,paginate} = props;
   const tabsLabel = {
     Main: "",
     Episode: "episodes",
@@ -32,7 +32,7 @@ function DisplayShowDetails(props) {
                 class="btn"
                 id={item}
                 onClick={() =>
-                  props.getShowDetails(item, mealInfo.id, tabsLabel[item])
+                  props.getShowDetails(item, showData.id, tabsLabel[item])
                 }
               >
                 {item}
@@ -42,12 +42,12 @@ function DisplayShowDetails(props) {
         </div>
       </div>
         <div class="container mt-5">
-        <MainComponent showEpisode={showEpisode} mealInfo={mealInfo} onShowSelect={onShowSelect}/>
-        <EpisodesComponent showEpisode={showEpisode} mealInfo={mealInfo} tabsData={tabsData}onShowSelect={onShowSelect}/>
+        <MainComponent showEpisode={showEpisode} showData={showData} onShowSelect={onShowSelect}/>
+        <EpisodesComponent showEpisode={showEpisode} showData={showData} tabsData={tabsData}onShowSelect={onShowSelect}/>
         
-          <CastComponent showEpisode={showEpisode} mealInfo={mealInfo} tabsData={tabsData}onShowSelect={onShowSelect}/>
-          <CrewComponent showEpisode={showEpisode} mealInfo={mealInfo} tabsData={tabsData}onShowSelect={onShowSelect}/>
-          <GalleryComponent showEpisode={showEpisode} mealInfo={mealInfo} tabsData={tabsData}onShowSelect={onShowSelect}/>
+          <CastComponent showEpisode={showEpisode} showData={showData} tabsData={tabsData}onShowSelect={onShowSelect}/>
+          <CrewComponent showEpisode={showEpisode} showData={showData} tabsData={tabsData}onShowSelect={onShowSelect}/>
+          <GalleryComponent showEpisode={showEpisode} showData={showData} tabsData={tabsData}onShowSelect={onShowSelect}/>
          
            <div class="row container">
               <Pagination

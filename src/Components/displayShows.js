@@ -8,7 +8,7 @@ const displayShows = ({ shows, onShowSelect, searchFlag }) => {
         show && searchFlag ? (
           <div class="col-lg-4 pb-5 ">
             <div class="card ">
-              <img               
+              <img id="image"           
                   src={show.show && show.show.image && show.show.image.medium}
                 onClick={() => onShowSelect(show.show)}
               />
@@ -17,7 +17,7 @@ const displayShows = ({ shows, onShowSelect, searchFlag }) => {
         ) : (
           <div class="col-lg-3 pb-5">
             <div class="card">
-              <img              
+              <img  id="image"            
                 src={show.image && show.image.medium}
                 onClick={() => onShowSelect(show)}
               />

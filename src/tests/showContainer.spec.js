@@ -8,15 +8,24 @@ configure({ adapter: new Adapter() });
 
 describe("App component", () => {
   const wrapper = mount(<ShowContainer />);
+  wrapper.setState({
+    shows: [{ show: { image: { medium: "http://abc" },rating:{average:6.5} } }],
+  });
   it("test for component render", () => {
     wrapper.setState({ showDetails: true });
     wrapper.find("#Cast").simulate("click");
-    // wrapper.find('#img').simulate('click');
-    wrapper.setState({
-      shows: [{ show: { image: { medium: "http://abc" } } }],
-    });
+   
+    wrapper.setState({showDetails:false})
     wrapper.setState({ searchFlag: true });
+    wrapper.find('#image').simulate('click');
     wrapper.setState({ searchFlag: false });
+    
+    wrapper.find('#image').simulate('click');
+    wrapper.setState({showDetails:true})
+    wrapper.setState({filterShow:true});
+    wrapper.setState({showData:{image:{medium:'dgsdh'},summary:'summary',
+    network:{name:'name',country:{code:'US'} },schedule:{days:['1'],time:'wyeuywe'},genres:['drama']}})
+    wrapper.find('#mainImage').simulate('click');
     wrapper.setState({ showEpisode: "Episode" });
 
     wrapper.setState({ tabsData: [{ image: { medium: "http://abc" } }] });
@@ -34,6 +43,9 @@ describe("App component", () => {
 
     expect(wrapper).toBeDefined();
   });
+  
+  
+
   it("test for fetchShows()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "fetchShows");
     wrapper.instance().fetchShows();
@@ -54,8 +66,8 @@ describe("App component", () => {
   it("test for getShowDetails ()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "getShowDetails");
     // const e =  "dfdf";
-    wrapper.instance().getShowDetails("e", 1, "");
-    expect(addMock).toHaveBeenCalledWith("e", 1, "");
+    wrapper.instance().getShowDetails("e", 1);
+    expect(addMock).toHaveBeenCalledWith("e", 1);
   });
   it("test for paginate ()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "paginate");
