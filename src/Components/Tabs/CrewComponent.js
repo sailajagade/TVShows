@@ -2,12 +2,12 @@ import React from "react";
 import "../../Css/Shows.css";
 
 const CrewComponent = (props ) => {
-    const {tabsData,showEpisode}=props
+    const {tabsData,showTab}=props
   return (
    
    
     <div class="row">
-    {showEpisode === "Crew" &&
+    {
       tabsData &&
       tabsData.map((post) => (
         <div class="card-deck col-lg-3 mt-5">

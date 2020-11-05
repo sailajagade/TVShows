@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Shows from "../Components/displayShows";
 import Pagination from "../Components/Pagination";
-import DisplayShowDetails from "../Components/displayShowDetails";
+import Displayshowdetails from "../Components/displayShowDetails";
 import { FETCHALLSHOWS, SEARCHRESULTS, SHOWSELECT } from "../Api/url";
 import SearchComponent from "../Components/SearchComponent";
 import { getData } from "../Api/Api";
@@ -12,19 +12,14 @@ class showContainer extends Component {
     super(props);
 
     this.state = {
-      showDetails: false,
+      showdetails: false,
       currentPage: 1,
       postsPerPage: 8,
       shows: [],
       showData: [],
-      showEpisode: "",
+      showTab: "",
       tabsData: [],
-      filteredData: [],
-      filterShow: false,
     };
-    this.indexOfLastPost = "";
-    this.indexOfFirstPost = "";
-    this.currentPosts = [];
   }
 
   componentDidMount = async () => {
@@ -42,7 +37,7 @@ class showContainer extends Component {
   };
 
   onShowSearch = async (event) => {
-    this.setState({ showDetails: false });
+    this.setState({ showdetails: false });
     const { value } = event.target;
     try {
       if (event.keyCode === 13) {
@@ -60,21 +55,22 @@ class showContainer extends Component {
     getData(SHOWSELECT + id)
       .then((res) => {
         this.setState({
-          showDetails: true,
+          showdetails: true,
           showData: res.data,
-          showEpisode: "",
+          showTab: "",
         });
       })
       .catch((error) => {
         console.log(error);
       });
+    console.log(this.state.showData);
   };
 
   getShowDetails = async (e, id, tabName = "") => {
     const url = tabName ? SHOWSELECT + id + "/" + tabName : SHOWSELECT + id;
     getData(url).then((res) => {
       this.setState({
-        showEpisode: e,
+        showTab: e,
         currentPage: 1,
         tabsData: res.data,
       });
@@ -86,7 +82,6 @@ class showContainer extends Component {
 
   filterRatingAndgenre = () => {
     let filteredShows = [];
-    this.fetchShows();
     let genrevalue =
       document.getElementById("genre") &&
       document.getElementById("genre").value;
@@ -109,33 +104,14 @@ class showContainer extends Component {
     );
     if (filteredShows.length > 0)
       this.setState({
-        filteredData: filteredShows,
+        shows: filteredShows,
         currentPage: 1,
-        showDetails: false,
-        filterShow: true,
+        showdetails: false,
       });
   };
 
-  Pagination = () => {
-    const {
-      shows,
-      tabsData,
-      currentPage,
-      postsPerPage,
-      filterShow,
-      filteredData,
-    } = this.state;
-    this.indexOfLastPost = currentPage * postsPerPage;
-    this.indexOfFirstPost = this.indexOfLastPost - postsPerPage;
-    this.currentPosts = !filterShow
-      ? shows.slice(this.indexOfFirstPost, this.indexOfLastPost)
-      : filteredData.slice(this.indexOfFirstPost, this.indexOfLastPost);
-    this.tabData =
-      Array.isArray(tabsData) &&
-      tabsData.slice(this.indexOfFirstPost, this.indexOfLastPost);
-  };
   routeback = () => {
-    this.setState({ showDetails: false });
+    this.setState({ showdetails: false, currentPage: 1 });
     this.fetchShows();
     if (document.getElementById("searchbox"))
       document.getElementById("searchbox").value = "";
@@ -145,51 +121,43 @@ class showContainer extends Component {
     const {
       postsPerPage,
       shows,
-      searchFlag,
-      tabsData,
       showData,
-      showDetails,
-      showEpisode,
+      tabsData,
+      showdetails,
+      showTab,
+      searchFlag,
+      currentPage,
     } = this.state;
-
-    this.Pagination();
     return (
-      <div >
+      <div>
         <SearchComponent
           ongenreSelect={this.filterRatingAndgenre}
           onRatingSelect={this.filterRatingAndgenre}
           onShowSearch={this.onShowSearch}
         />
-        {showDetails ? (
-        
-            <div>
-              <DisplayShowDetails
-                showData={showData}
-                onShowSearch={this.onShowSearch}
-                onShowSelect={this.onShowSelect}
-                showDetails={showDetails}
-                searchFlag={searchFlag}
-                getShowDetails={this.getShowDetails}
-                showEpisode={showEpisode}
-                tabsData={this.tabData}
-                episodeLength={tabsData}
-                paginate={this.paginate}
-                postsPerPage={postsPerPage}
-                routeback={this.routeback}
-              />
-            </div>
-         
+        {showdetails ? (
+          <div>
+            <Displayshowdetails
+              currentPage={currentPage}
+              postsPerPage={postsPerPage}
+              showData={showData}
+              getShowDetails={this.getShowDetails}
+              showTab={showTab}
+              tabsData={tabsData}
+              paginate={this.paginate}
+              routeback={this.routeback}
+            />
+          </div>
         ) : (
           <div class="row">
             <div class="col-lg-2">
-              <Sidenav
-                filterRatingAndgenre={this.filterRatingAndgenre}
-                onShowSearch={this.onShowSearch}
-              />
+              <Sidenav filterRatingAndgenre={this.filterRatingAndgenre} />
             </div>
             <div class="col-lg-10">
               <Shows
-                shows={searchFlag ? shows : this.currentPosts}
+                currentPage={this.state.currentPage}
+                postsPerPage={this.state.postsPerPage}
+                shows={shows}
                 onShowSelect={this.onShowSelect}
                 searchFlag={searchFlag}
               />
@@ -197,11 +165,7 @@ class showContainer extends Component {
                 {" "}
                 <Pagination
                   postsPerPage={postsPerPage}
-                  totalPosts={
-                    this.state.filterShow
-                      ? this.state.filteredData.length
-                      : shows.length
-                  }
+                  totalPosts={shows.length}
                   paginate={this.paginate}
                 />
               </div>

@@ -6,17 +6,17 @@
   import "../../Css/Shows.css";
 
 const MainComponent = (props ) => {
-    const {showData,onShowSelect,showEpisode}=props
+    const {showData,onShowSelect,showTab}=props
+    console.log(showData)
   return (
    
-<div>{showEpisode === "Main" || showEpisode === "" ? (
+<div>
     <div>
       <div class="col-lg-4">
         <div class="card">
           <img id="mainImage"
             
             src={showData&&showData.image && showData.image.medium}
-            onClick={() => onShowSelect(showData)}
           />
         </div>
       </div>
@@ -80,9 +80,7 @@ const MainComponent = (props ) => {
         </div>
       </div>
     </div>
-  ) : (
-    ""
-  )}
+  
 </div>
   );
 };

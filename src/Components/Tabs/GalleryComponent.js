@@ -2,11 +2,11 @@ import React from "react";
 import "../../Css/Shows.css";
 
 const GalleryComponent = (props ) => {
-    const {tabsData,showEpisode}=props
+    const {tabsData,showTab}=props
   return (
    
     <div class="row ">
-    {showEpisode === "Gallery" &&
+    {
       tabsData &&
       tabsData.map((post) => (
         <div class="card col-lg-2 mt-5 mr-5 pr-0 pl-0">

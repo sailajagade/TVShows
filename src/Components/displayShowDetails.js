@@ -8,7 +8,19 @@ import Pagination from "./Pagination";
 import "../Css/Shows.css";
 
 function DisplayShowDetails(props) {
-  const { showData, tabsData,showEpisode,onShowSelect,episodeLength,paginate} = props;
+  const {
+    showData,
+    tabsData,
+    showTab,
+    paginate,
+    currentPage,
+    postsPerPage,
+  } = props;
+  let indexOfLastPost = currentPage * postsPerPage;
+  let indexOfFirstPost = indexOfLastPost - postsPerPage;
+  let tabData =
+    Array.isArray(tabsData) &&
+    tabsData.slice(indexOfFirstPost, indexOfLastPost);
   const tabsLabel = {
     Main: "",
     Episode: "episodes",
@@ -41,23 +53,38 @@ function DisplayShowDetails(props) {
           ))}
         </div>
       </div>
-        <div class="container mt-5">
-        <MainComponent showEpisode={showEpisode} showData={showData} onShowSelect={onShowSelect}/>
-        <EpisodesComponent showEpisode={showEpisode} showData={showData} tabsData={tabsData}onShowSelect={onShowSelect}/>
-        
-          <CastComponent showEpisode={showEpisode} showData={showData} tabsData={tabsData}onShowSelect={onShowSelect}/>
-          <CrewComponent showEpisode={showEpisode} showData={showData} tabsData={tabsData}onShowSelect={onShowSelect}/>
-          <GalleryComponent showEpisode={showEpisode} showData={showData} tabsData={tabsData}onShowSelect={onShowSelect}/>
-         
-           <div class="row container">
-              <Pagination
-                postsPerPage={8}
-                totalPosts={episodeLength.length}
-                paginate={paginate}
-              />
-          </div>
-         
-          </div>
+      <div class="container mt-5">
+        {showTab === "Main" || showTab === "" ? (
+          <MainComponent showData={showData} />
+        ) : (
+          ""
+        )}
+        {showTab === "Episode" && (
+          <EpisodesComponent showData={showData} tabsData={tabData} />
+        )}
+
+        {showTab === "Cast" && (
+          <CastComponent showData={showData} tabsData={tabData} />
+        )}
+        {showTab === "Crew" && (
+          <CrewComponent showData={showData} tabsData={tabData} />
+        )}
+        {showTab === "Gallery" && (
+          <GalleryComponent showData={showData} tabsData={tabData} />
+        )}
+
+        <div class="row container">
+          {showTab !== "" ? (
+            <Pagination
+              postsPerPage={8}
+              totalPosts={tabsData.length}
+              paginate={paginate}
+            />
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
     </div>
   );
 }

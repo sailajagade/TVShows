@@ -12,30 +12,33 @@ describe("App component", () => {
     shows: [{ show: { image: { medium: "http://abc" },rating:{average:6.5} } }],
   });
   it("test for component render", () => {
-    wrapper.setState({ showDetails: true });
+    wrapper.setState({ showdetails: true });
+    wrapper.setState({ showTab: "Cast"});
+   
     wrapper.find("#Cast").simulate("click");
    
     wrapper.setState({showDetails:false})
     wrapper.setState({ searchFlag: true });
-    wrapper.find('#image').simulate('click');
+    // wrapper.find('#image').simulate('click');
     wrapper.setState({ searchFlag: false });
     
-    wrapper.find('#image').simulate('click');
+    // wrapper.find('#image').simulate('click');
     wrapper.setState({showDetails:true})
     wrapper.setState({filterShow:true});
-    wrapper.setState({showData:{image:{medium:'dgsdh'},summary:'summary',
+    wrapper.setState({tabsData:{image:{medium:'dgsdh'},summary:'summary',
     network:{name:'name',country:{code:'US'} },schedule:{days:['1'],time:'wyeuywe'},genres:['drama']}})
+    wrapper.setState({ showTab: "Main"});
     wrapper.find('#mainImage').simulate('click');
-    wrapper.setState({ showEpisode: "Episode" });
+    wrapper.setState({ showTab: "Episode" });
 
     wrapper.setState({ tabsData: [{ image: { medium: "http://abc" } }] });
-    wrapper.setState({ showEpisode: "Cast" });
+    wrapper.setState({ showTab: "Cast" });
 
     wrapper.setState({ tabsData: [{ character: { medium: "http://abc" } }] });
-    wrapper.setState({ showEpisode: "Crew" });
+    wrapper.setState({ showTab: "Crew" });
 
     wrapper.setState({ tabsData: [{ person: { medium: "http://abc" } }] });
-    wrapper.setState({ showEpisode: "Gallery" });
+    wrapper.setState({ showTab: "Gallery" });
     wrapper.setState({
       tabsData: [{ resolutions: { medium: { url: "http://abc" } } }],
     });
