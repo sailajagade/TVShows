@@ -14,7 +14,7 @@ function DisplayShowDetails(props) {
     showTab,
     paginate,
     currentPage,
-    postsPerPage,
+    postsPerPage=8,
   } = props;
   let indexOfLastPost = currentPage * postsPerPage;
   let indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -28,20 +28,19 @@ function DisplayShowDetails(props) {
     Crew: "crew",
     Gallery: "images",
   };
-
   return (
     <div>
-      <div class="navbar2">
-        <div class="container">
-          <div class="col-lg-1">
-            <button class="btn" onClick={props.routeback}>
+      <div className="navbar2">
+        <div className="row container mt-4">
+          <div className="col-lg-2">
+            <button className="btn" onClick={props.routeback}>
               Home
             </button>
           </div>
           {Object.keys(tabsLabel).map((item) => (
-            <div class="col-lg-1">
+            <div className="col-lg-1">
               <button
-                class="btn"
+                className="btn"
                 id={item}
                 onClick={() =>
                   props.getShowDetails(item, showData.id, tabsLabel[item])
@@ -53,7 +52,7 @@ function DisplayShowDetails(props) {
           ))}
         </div>
       </div>
-      <div class="container mt-5">
+      <div className="mt-5" >
         {showTab === "Main" || showTab === "" ? (
           <MainComponent showData={showData} />
         ) : (
@@ -73,11 +72,11 @@ function DisplayShowDetails(props) {
           <GalleryComponent showData={showData} tabsData={tabData} />
         )}
 
-        <div class="row container">
+        <div className="pagination-margin" >
           {showTab !== "" ? (
             <Pagination
               postsPerPage={8}
-              totalPosts={tabsData.length}
+              totalPosts={tabsData && tabsData.length}
               paginate={paginate}
             />
           ) : (

@@ -5,11 +5,11 @@ const SearchComponent = (props) => {
   const { onShowSearch } = props;
 
   return (
-    <div class="row nav">
-      <div class="col-lg-2 mt-4 ml-4">
-        <h1 className="text-primary mt-3">TV Shows</h1>
+    <div className="row nav">
+      <div className="col-lg-2 mt-4 marginLeft" >
+       <b><h1 className=" mt-3 color" >TV Shows</h1></b>
       </div>
-      <div class="col-lg-5 mt-3">
+      <div className="col-lg-5 mt-3">
         <input
           id="searchbox"
           placeholder=""
