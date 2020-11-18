@@ -14,7 +14,7 @@ function DisplayShowDetails(props) {
     showTab,
     paginate,
     currentPage,
-    postsPerPage=8,
+    postsPerPage = 8,
   } = props;
   let indexOfLastPost = currentPage * postsPerPage;
   let indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -32,15 +32,15 @@ function DisplayShowDetails(props) {
     <div>
       <div className="navbar2">
         <div className="row container mt-4">
-          <div className="col-lg-2">
-            <button className="btn" onClick={props.routeback}>
-              Home
+          <div className="col-lg-1 ">
+            <button className="btn homebtn" onClick={props.routeback}>
+              <i className="fa fa-home" ></i>
             </button>
           </div>
-          {Object.keys(tabsLabel).map((item) => (
-            <div className="col-lg-1">
+          {Object.keys(tabsLabel).map((item, index) => (
+            <div className="col-lg-1" key={index}>
               <button
-                className="btn"
+                className="btn navbtn"
                 id={item}
                 onClick={() =>
                   props.getShowDetails(item, showData.id, tabsLabel[item])
@@ -52,7 +52,7 @@ function DisplayShowDetails(props) {
           ))}
         </div>
       </div>
-      <div className="mt-5" >
+      <div className="mt-5">
         {showTab === "Main" || showTab === "" ? (
           <MainComponent showData={showData} />
         ) : (
@@ -72,7 +72,7 @@ function DisplayShowDetails(props) {
           <GalleryComponent showData={showData} tabsData={tabData} />
         )}
 
-        <div className="pagination-margin" >
+        <div className="pagination-margin">
           {showTab !== "" ? (
             <Pagination
               postsPerPage={8}

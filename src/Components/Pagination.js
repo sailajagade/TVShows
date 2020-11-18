@@ -12,9 +12,10 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
       <ul className="pagination  pagination-xs flex-xs-wrap" >
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <a  id="aaa" onClick={() => paginate(number)} href="#" className="page-link">
-              {number}
-            </a>
+            <button  id="pagination" onClick={() => paginate(number)}  className="page-link" 
+            >
+            <u>{number}</u>  
+            </button>
           </li>
         ))}
       </ul>

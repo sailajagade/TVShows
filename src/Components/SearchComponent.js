@@ -5,7 +5,7 @@ const SearchComponent = (props) => {
   const { onShowSearch } = props;
 
   return (
-    <div className="row nav">
+    <div className="nav">
       <div className="col-lg-2 mt-4 marginLeft" >
        <b><h1 className=" mt-3 color" >TV Shows</h1></b>
       </div>

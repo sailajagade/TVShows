@@ -4,12 +4,16 @@ import "../../Css/Shows.css";
 const CastComponent = (props) => {
   const { tabsData } = props;
   return (
-    <div className="cards cards-margin" >
-    {tabsData &&
-      tabsData.map((post) => (
-        <div className=" cards col-lg-2 mt-5">
-          <div className="card">
+    <div className="cards cards-margin">
+      {tabsData &&
+        tabsData.map((post) => (
+          <div
+            className=" cards col-lg-2 mt-5  col-md-4 col-sm-6"
+            key={post.character.name}
+          >
+            <div className="card" id="castImage">
               <img
+                alt="img"
                 src={
                   post &&
                   post.character &&
@@ -17,12 +21,12 @@ const CastComponent = (props) => {
                   post.character.image.medium
                 }
               />
-              <div className="card-footer fontStyle">
-                <b>{post && post.character && post.character.name}</b>:{" "}
+              <div className="card-footer card fontStyle">
+                <b>{post && post.character && post.character.name}</b>:
                 {post.person && post.person.name}
               </div>
             </div>
-           </div>
+          </div>
         ))}
     </div>
   );

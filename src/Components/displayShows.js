@@ -1,28 +1,38 @@
-import React, { Component } from "react";
-import ScrollMenu from "react-horizontal-scroll-menu";
+import React, { Component, Fragment } from "react";
+import ScrollMenu from "react-horizontal-scrolling-menu";
+
 import "../Css/Shows.css";
 
 const MenuItem = ({ text, onShowSelect }) => {
   return (
-    <div>
-      <img
-        src={text.image && text.image.medium}
-        alt={text.name}
-        onClick={() => onShowSelect(text)}
-      />
+    <Fragment>
+      {" "}
+      {text.image ? (
+        <div className="imageMargin">
+          <img
+            className="displayImage"
+            src={text.image && text.image.medium}
+            alt={text.name}
+            onClick={() => onShowSelect(text)}
+          />
 
-      <div className="textcolor"> {text.name}</div>
-      <div className="textcolor">
-        {" "}
-        <i className="fa fa-star" aria-hidden="true"></i>
-        {text.rating.average}
-      </div>
-    </div>
+          {/* <div className="textcolor mediaQ"> {text.name}</div> */}
+          <div className="textcolor mediaQ">
+            {" "}
+            <span>Rating:</span>
+            {text.rating.average}
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+    </Fragment>
   );
 };
 
 export const Menu = (list, onShowSelect, searchFlag) =>
-list&& list.map((el) => {
+  list &&
+  list.map((el) => {
     return (
       <MenuItem
         text={searchFlag ? el.show : el}
@@ -32,59 +42,83 @@ list&& list.map((el) => {
     );
   });
 
-const Arrow = ({ text, className }) => {
-  return (
-    <div className={className}>
-      <i className={text}></i>
-    </div>
-  );
-};
-
-const ArrowLeft = Arrow({
-  text: "fa fa-chevron-circle-left fa-lg",
-  className: "arrow-prev",
-});
-const ArrowRight = Arrow({
-  text: "fa fa-chevron-circle-right fa-lg",
-  className: "arrow-next",
-});
-
 class displayShows extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selected: "",
+      arrnumber: 6,
+    };
+    this.arrowLeft = "";
+    this.arrowRight = "";
   }
-  state = {
-    selected: "item1",
-    list: this.props.currentPosts,
+  Arrow = ({ text, className }) => {
+    return text ? (
+      <div className={className}>
+        <i
+          className={text}
+          onClick={() => {
+            this.onArrowClick(className);
+          }}
+        ></i>
+      </div>
+    ) : (
+      <div className="prev"> </div>
+    );
+  };
+  onArrowClick = (text) => {
+    let { arrnumber } = this.state;
+    let setArrNumber = text === "arrow-next" ? arrnumber + 6 : arrnumber - 6;
+
+    this.setState({ arrnumber: setArrNumber });
+    this.hideArrow();
+  };
+  hideArrow = () => {
+    let { arrnumber } = this.state;
+    let { currentPosts } = this.props;
+    this.arrowLeft = this.Arrow({
+      text: arrnumber !== 6 ? "fa fa-chevron-circle-left fa-lg" : "",
+      className: "arrow-prev",
+    });
+    this.arrowRight = this.Arrow({
+      text:
+        arrnumber < currentPosts.length || arrnumber - currentPosts.length < 6
+          ? "fa fa-chevron-circle-right fa-lg"
+          : "",
+      className: "arrow-next",
+    });
   };
 
-  // onSelect = (key) => {
-  //   this.setState({ selected: key });
-  // };
-
   render() {
-    const { selected, list } = this.state;
-    const { searchFlag, currentPosts, onShowSelect,fetchShows } = this.props;
-    const menu = searchFlag
-      ? Menu(currentPosts, onShowSelect, searchFlag)
-      : Menu(list.data, onShowSelect, searchFlag);
+    this.hideArrow();
 
+    const { selected } = this.state;
+    const {
+      searchFlag,
+      currentPosts,
+      onShowSelect,
+      fetchShows,
+      genre,
+    } = this.props;
+    const menu = Menu(currentPosts, onShowSelect, searchFlag);
     return (
       <div className="margin">
         <div className="mb-5 pt-5">
           {" "}
-          <b>
-             
-            {searchFlag?<button className="btn" onClick={fetchShows} style={{fontSize:'16px',marginLeft:'40px',marginBottom:'5px'}} > 
-           <h1> <i class="fa fa-chevron-left"> Home</i> </h1> </button>:
-          <h1 className="margin bg-color">  {this.props.genre} Shows 
-             </h1>}
-        
-          </b>
+          {searchFlag ? (
+            <button className="btn heading" onClick={fetchShows}>
+              <h1>
+                {" "}
+                <i className="fa fa-home"></i>{" "}
+              </h1>{" "}
+            </button>
+          ) : (
+            <h1 className="margin bg-color paddingbtm"> {genre} Shows</h1>
+          )}
           <ScrollMenu
             data={menu}
-            arrowLeft={ArrowLeft}
-            arrowRight={ArrowRight}
+            arrowLeft={this.arrowLeft}
+            arrowRight={this.arrowRight}
             selected={selected}
             onSelect={this.onSelect}
             alignCenter={false}

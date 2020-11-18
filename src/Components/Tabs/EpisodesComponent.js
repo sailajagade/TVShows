@@ -4,13 +4,17 @@ import "../../Css/Shows.css";
 const EpisodesComponent = (props) => {
   const { tabsData } = props;
   return (
-    <div className="cards cards-margin" >
+    <div className="row cards-margin">
       {tabsData &&
         tabsData.map((post) => (
-          <div className="card-deck col-lg-3">
-            <div className="card   mt-5">
-                <img src={post && post.image && post.image.medium} />
-              <div className="card-footer fontStyle">
+          <div
+            className=" cards col-lg-3 mt-5  col-md-4 col-sm-6"
+            key={post.name}
+          >
+            <div className="card">
+              <img src={post && post.image && post.image.medium} alt="img" />
+
+              <div className="card-footer cards fontStyle">
                 <div>
                   <b>Season:</b>
                   {post.season}

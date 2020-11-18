@@ -1,35 +1,28 @@
 import React, { Component, Fragment } from "react";
 import Shows from "../Components/displayShows";
-import Displayshowdetails from "../Components/displayShowDetails";
 import { FETCHALLSHOWS, SEARCHRESULTS, SHOWSELECT } from "../Api/url";
 import SearchComponent from "../Components/SearchComponent";
 import { getData } from "../Api/Api";
-
+import DisplayShowDetailsContainer from "./displayShowDetailsContainer";
 class showContainer extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      showsObj: {
-        Drama: { data: [], currentPage: 1 },
-        Action: { data: [], currentPage: 1 },
-        Comedy: { data: [], currentPage: 1 },
-        Crime: { data: [], currentPage: 1 },
-      },
+      searchPosts: [],
+      showsObj: {},
       showdetails: false,
       shows: [],
       showData: [],
       showTab: "",
       tabsData: [],
-      currentPosts: [],
       searchFlag: false,
+      GenreTypes: [],
+      popularshows: [],
     };
-    this.GenreType = ["Drama", "Action", "Comedy", "Crime"];
   }
 
   componentDidMount = () => {
     this.fetchShows();
-    // this.next();
   };
 
   fetchShows = () => {
@@ -38,35 +31,65 @@ class showContainer extends Component {
         this.setState(
           {
             shows: res.data,
-            currentPosts: res.data,
             searchFlag: false,
+            showdetails: false,
           },
-          this.filterGenres
+          this.setGenreType
         );
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  setGenreType = () => {
+    let {shows,GenreTypes}=this.state
+    shows &&
+     shows.map((show) => {
+        show.genres.map((genre) => {
+          if (!GenreTypes.includes(genre))
+          GenreTypes.push(genre);
+          return "";
+        });
+        return "";
+      });
+
+    this.filterGenres();
+  };
   filterGenres = () => {
     let newState = Object.assign({}, this.state);
-    newState.showsObj.Action.data=[]
-    newState.showsObj.Drama.data=[]
-    newState.showsObj.Comedy.data=[]
-    newState.showsObj.Crime.data=[]
-    this.state.shows &&
-      this.state.shows.map((show) => {
-        let filterGenre =
-          show.genres &&
-          show.genres.find((genre) => this.GenreType.includes(genre));
-        if (
-          filterGenre &&
-          Math.floor(show && show.rating && show.rating.average) >= 6
-        ) {
-          newState.showsObj[filterGenre].data.push(show);
-                
-          this.setState(newState);
-        }
+    let {shows,GenreTypes}=this.state
+ GenreTypes.map((genre) => {
+      newState.showsObj[genre] = [];
+      newState.popularshows = [];
+      return "";
+    });
+   shows &&
+      shows.map((show) => {
+        show.genres &&
+          show.genres.map((genre) => {
+            if (GenreTypes.includes(genre)) {
+              newState.showsObj[genre].push(show);
+
+              this.setState(newState);
+            }
+            return "";
+          });
+        if (show.rating.average > 7) newState.popularshows.push(show);
+        return "";
+      });
+  };
+  onShowSelect = async (event) => {
+    const { id } = event;
+    getData(SHOWSELECT + id)
+      .then((res) => {
+        this.setState({
+          showdetails: true,
+          showData: res.data,
+          showTab: "Main",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -75,70 +98,20 @@ class showContainer extends Component {
     const { value } = event.target;
     try {
       if (event.keyCode === 13) {
-        this.setState({searchFlag: true})
+        this.setState({ searchFlag: true });
         getData(SEARCHRESULTS + value).then((res) => {
           this.setState({
             shows: res.data,
-            currentPosts2: res.data,
-          
+            searchPosts: res.data,
           });
         });
       }
     } catch (err) {
-      console.log("error", err);
+      console.log(err);
     }
   };
-
-  onShowSelect = async (event) => {
-    const { id } = event;
-    getData(SHOWSELECT + id)
-      .then((res) => {
-        this.setState({
-          showdetails: true,
-          showData: res.data,
-          showTab: "",
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  getShowDetails = async (e, id, tabName = "") => {
-    const url = tabName ? SHOWSELECT + id + "/" + tabName : SHOWSELECT + id;
-    getData(url).then((res) => {
-      this.setState({
-        showTab: e,
-        currentPage: 1,
-        tabsData: res.data,
-      });
-    });
-  };
-  paginate = (pageNumber) => {
-    this.setState({ currentPage: pageNumber });
-  };
-
-  routeback = () => {
-    this.setState({
-      showdetails: false,
-      searchFlag: false,
-    });
-    this.fetchShows();
-    if (document.getElementById("searchbox"))
-      document.getElementById("searchbox").value = "";
-  };
-
   render() {
-    const {
-      postsPerPage,
-      shows,
-      showData,
-      tabsData,
-      showdetails,
-      showTab,
-      searchFlag,
-      currentPage,
-    } = this.state;
+    const { shows, showData,showsObj, showdetails,searchPosts, showTab, searchFlag,popularshows} = this.state;
     return (
       <Fragment>
         <SearchComponent
@@ -147,44 +120,57 @@ class showContainer extends Component {
           onShowSearch={this.onShowSearch}
         />
         {showdetails ? (
-          <div className="">
-            <Displayshowdetails
-              currentPage={currentPage}
-              postsPerPage={postsPerPage}
+          <div>
+            <DisplayShowDetailsContainer
               showData={showData}
-              getShowDetails={this.getShowDetails}
               showTab={showTab}
-              tabsData={tabsData}
-              paginate={this.paginate}
-              routeback={this.routeback}
+              fetchShows={this.fetchShows}
             />
           </div>
         ) : (
-          <div style={{ backgroundColor: "black" }}>
-            {!searchFlag ? (
-              Object.keys(this.state.showsObj).map((genre) => (
-                <Shows key={genre}
-                  currentPosts={this.state.showsObj[genre]}
-                  postsPerPage={this.state.postsPerPage}
+          <Fragment>
+            <div className="background" key="popular">
+              {!searchFlag ? (
+                <Shows
+                  currentPosts={popularshows}
+                  shows={shows}
+                  genre="Popular"
+                  onShowSelect={this.onShowSelect}
+                  searchFlag={searchFlag}
+                  fetchShows={this.fetchShows}
+                />
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="background">
+              {!searchFlag ? (
+                Object.keys(showsObj).map((genre) => (
+                  <Shows
+                    key={genre}
+                    currentPosts={
+                      showsObj[genre].length > 0 &&
+                      showsObj[genre]
+                    }
+                    shows={shows}
+                    onShowSelect={this.onShowSelect}
+                    searchFlag={searchFlag}
+                    genre={genre}
+                    fetchShows={this.fetchShows}
+                  />
+                ))
+              ) : (
+                <Shows
+                  currentPosts={searchPosts}
                   shows={shows}
                   onShowSelect={this.onShowSelect}
                   searchFlag={searchFlag}
-                  genre={genre}
+                  genre="Popular"
                   fetchShows={this.fetchShows}
                 />
-              ))
-            ) : (
-              <Shows
-                currentPosts={this.state.currentPosts2}
-                postsPerPage={this.state.postsPerPage}
-                shows={shows}
-                onShowSelect={this.onShowSelect}
-                searchFlag={searchFlag}
-                genre=""
-                fetchShows={this.fetchShows}
-              />
-            )}
-          </div>
+              )}
+            </div>
+          </Fragment>
         )}
       </Fragment>
     );
