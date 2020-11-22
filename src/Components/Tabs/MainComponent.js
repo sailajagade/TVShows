@@ -1,19 +1,25 @@
 import React from "react";
 import "../../Css/Shows.css";
+import "../../Css/Tabs.css";
+import "../../Css/Media.css";
 
 const MainComponent = (props) => {
   const { showData } = props;
   return (
     <div className="cards cards-margin">
       <div className="row">
-        <div className="cards col-lg-3 col-md-5" key={showData && showData.id}>
+        <div
+          className="cards col-lg-2 col-md-5"
+          id="maindiv"
+          key={showData && showData.id}
+        >
           <img
             alt="img"
-            id="mainImage"
+            id="main-image"
             src={showData && showData.image && showData.image.medium}
           />
         </div>
-        <div className="col-lg-4 col-md-6 fontStyle">
+        <div className="col-lg-4 col-md-6 font-Style">
           {showData &&
             showData.summary &&
             showData.summary.replace(/<[^>]+>/g, "")}

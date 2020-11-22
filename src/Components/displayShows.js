@@ -1,31 +1,28 @@
 import React, { Component, Fragment } from "react";
 import ScrollMenu from "react-horizontal-scrolling-menu";
-
+import { isMobileOnly } from "react-device-detect";
 import "../Css/Shows.css";
+import "../Css/Media.css";
 
 const MenuItem = ({ text, onShowSelect }) => {
   return (
     <Fragment>
       {" "}
-      {text.image ? (
-        <div className="imageMargin">
-          <img
-            className="displayImage"
-            src={text.image && text.image.medium}
-            alt={text.name}
-            onClick={() => onShowSelect(text)}
-          />
+      <div className="image-margin">
+        <img
+          className="display-image"
+          src={text.image && text.image.medium}
+          alt={text.name}
+          onClick={() => onShowSelect(text)}
+        />
 
-          {/* <div className="textcolor mediaQ"> {text.name}</div> */}
-          <div className="textcolor mediaQ">
-            {" "}
-            <span>Rating:</span>
-            {text.rating.average}
-          </div>
+        {/* <div className="text-color mediaQ"> {text.name}</div> */}
+        <div className="text-color">
+          {" "}
+          <span>Rating:</span>
+          {text.rating.average ? text.rating.average : ""}
         </div>
-      ) : (
-        ""
-      )}
+      </div>
     </Fragment>
   );
 };
@@ -47,7 +44,7 @@ class displayShows extends Component {
     super(props);
     this.state = {
       selected: "",
-      arrnumber: 6,
+      arrowNumber: 1,
     };
     this.arrowLeft = "";
     this.arrowRight = "";
@@ -67,31 +64,42 @@ class displayShows extends Component {
     );
   };
   onArrowClick = (text) => {
-    let { arrnumber } = this.state;
-    let setArrNumber = text === "arrow-next" ? arrnumber + 6 : arrnumber - 6;
-
-    this.setState({ arrnumber: setArrNumber });
+    let { arrowNumber } = this.state;
+    let arrCopy = arrowNumber;
+    let setarrowNumber =
+      text === "arrow-next"
+        ? isMobileOnly
+          ? arrCopy + 1
+          : arrCopy + 6
+        : isMobileOnly
+        ? arrCopy - 1
+        : arrCopy - 6;
+    this.setState({ arrowNumber: setarrowNumber });
     this.hideArrow();
   };
   hideArrow = () => {
-    let { arrnumber } = this.state;
+    let { arrowNumber } = this.state;
     let { currentPosts } = this.props;
     this.arrowLeft = this.Arrow({
-      text: arrnumber !== 6 ? "fa fa-chevron-circle-left fa-lg" : "",
+      text: arrowNumber !== 1 ? "fa fa-chevron-circle-left fa-lg" : "",
       className: "arrow-prev",
     });
     this.arrowRight = this.Arrow({
       text:
-        arrnumber < currentPosts.length || arrnumber - currentPosts.length < 6
+        currentPosts.length >= arrowNumber
+          ? arrowNumber < currentPosts.length ||
+            arrowNumber - currentPosts.length < 1
+            ? "fa fa-chevron-circle-right fa-lg"
+            : ""
+          : arrowNumber < Math.ceil(currentPosts.length / 6) ||
+            arrowNumber - Math.ceil(currentPosts.length / 6) < 1
           ? "fa fa-chevron-circle-right fa-lg"
           : "",
       className: "arrow-next",
     });
   };
-
   render() {
     this.hideArrow();
-
     const { selected } = this.state;
     const {
       searchFlag,
@@ -103,17 +111,20 @@ class displayShows extends Component {
     const menu = Menu(currentPosts, onShowSelect, searchFlag);
     return (
       <div className="margin">
-        <div className="mb-5 pt-5">
+        <div className="mb-5 pt-3">
           {" "}
           {searchFlag ? (
-            <button className="btn heading" onClick={fetchShows}>
-              <h1>
-                {" "}
-                <i className="fa fa-home"></i>{" "}
-              </h1>{" "}
+            <button className="btn home-btn">
+              <i className="fa fa-home" onClick={fetchShows}></i>
             </button>
           ) : (
-            <h1 className="margin bg-color paddingbtm"> {genre} Shows</h1>
+            <h1
+              className="margin bg-color padding-btm
+ mb-5"
+            >
+              {" "}
+              {genre} Shows
+            </h1>
           )}
           <ScrollMenu
             data={menu}
@@ -122,6 +133,7 @@ class displayShows extends Component {
             selected={selected}
             onSelect={this.onSelect}
             alignCenter={false}
+            scrollBy={isMobileOnly ? 1 : 6}
           />
         </div>
       </div>

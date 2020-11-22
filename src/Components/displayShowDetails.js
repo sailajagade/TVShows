@@ -6,6 +6,7 @@ import GalleryComponent from "./Tabs/GalleryComponent";
 import MainComponent from "./Tabs/MainComponent";
 import Pagination from "./Pagination";
 import "../Css/Shows.css";
+import "../Css/Media.css";
 
 function DisplayShowDetails(props) {
   const {
@@ -23,27 +24,31 @@ function DisplayShowDetails(props) {
     tabsData.slice(indexOfFirstPost, indexOfLastPost);
   const tabsLabel = {
     Main: "",
-    Episode: "episodes",
     Cast: "cast",
     Crew: "crew",
     Gallery: "images",
+    Episode: "episodes",
   };
   return (
     <div>
-      <div className="navbar2">
+      <div className="nav-bar">
         <div className="row container mt-4">
-          <div className="col-lg-1 ">
-            <button className="btn homebtn" onClick={props.routeback}>
-              <i className="fa fa-home" ></i>
+          <div className="col-lg-4">
+            <button className="btn home-btn" onClick={props.routeback}>
+              <i className="fa fa-home"></i>
             </button>
           </div>
           {Object.keys(tabsLabel).map((item, index) => (
             <div className="col-lg-1" key={index}>
               <button
-                className="btn navbtn"
+                className="btn nav-btn"
                 id={item}
                 onClick={() =>
-                  props.getShowDetails(item, showData.id, tabsLabel[item])
+                  props.getShowDetails(
+                    item,
+                    showData && showData.id,
+                    tabsLabel[item]
+                  )
                 }
               >
                 {item}

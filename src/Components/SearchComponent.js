@@ -1,13 +1,16 @@
 import React from "react";
 import "../Css/Shows.css";
+import "../Css/Media.css";
 
 const SearchComponent = (props) => {
   const { onShowSearch } = props;
 
   return (
     <div className="nav">
-      <div className="col-lg-2 mt-4 marginLeft" >
-       <b><h1 className=" mt-3 color" >TV Shows</h1></b>
+      <div className="col-lg-2 mt-4 marginLeft">
+        <b>
+          <h1 className=" mt-3 color">TV Shows</h1>
+        </b>
       </div>
       <div className="col-lg-5 mt-3">
         <input

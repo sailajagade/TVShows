@@ -2,10 +2,9 @@ import React from "react";
 import Adapter from "enzyme-adapter-react-16";
 import { configure } from "enzyme";
 
-import {  mount } from "enzyme";
-import ShowContainer from "../Container/showContainer";
+import { mount } from "enzyme";
+import ShowContainer from "../Containers/ShowContainer";
 configure({ adapter: new Adapter() });
-
 
 jest.mock("axios", () => {
   const exampleArticles = [{ title: "test article", url: "test url" }];
@@ -17,12 +16,13 @@ jest.mock("axios", () => {
 
 const axios = require("axios");
 
-describe("App component", () => {
+describe("ShowConatiner tests", () => {
   let wrapper = mount(<ShowContainer />);
   wrapper.setState({
     shows: [
       { show: { image: { medium: "http://abc" }, rating: { average: 6.5 } } },
     ],
+    arrowNumber: 3,
   });
 
   wrapper.setState({
@@ -37,92 +37,20 @@ describe("App component", () => {
       },
     ],
   });
-  it("test for component render", () => {
-    wrapper.setState({ showdetails: true });
-    wrapper.setState({ searchFlag: false });
-    wrapper.setState({ showDetails: true });
-    wrapper.setState({ filterShow: true });
-    wrapper.setState({
-      showData: {
-        image: { medium: "dgsdh" },
-        summary: "summary",
-        network: { name: "name", country: { code: "US" } },
-        schedule: { days: ["1"], time: "wyeuywe" },
-        genres: ["drama"],
-      },
-    });
-    wrapper.setState({ showTab: "Main" });
-    wrapper.setState({ showTab: "Cast" });
-    wrapper.setState({currentPage:1,postsPerPage:5})
-    wrapper.setState({
-      tabsData: 
-        {
-          image: { medium: "dgsdh" },
-          summary: "summary",
-          network: { name: "name", country: { code: "US" } },
-          schedule: { days: ["1"], time: "wyeuywe" },
-          genres: ["drama"],
-        },
-      
-    });
-    wrapper.setState({ showTab: "Crew" });
- wrapper.setState({currentPage:1,postsPerPage:5})
-    wrapper.setState({
-      tabsData: 
-        {
-          image: { medium: "dgsdh" },
-          summary: "summary",
-          network: { name: "name", country: { code: "US" } },
-          schedule: { days: ["1"], time: "wyeuywe" },
-          genres: ["drama"],
-        },
-      
-    });
-    wrapper.setState({ showTab: "Gallery" });
-    wrapper.find("#searchbox").prop("onKeyUp")({ key: "Enter" });
-    wrapper.setState({ searchFlag: false });
-    expect(wrapper).toBeDefined();
-  });
 
   it("test for component render", () => {
-    let wrapper2 = mount(<ShowContainer />);
-    wrapper2.setState({
+    wrapper.find("#searchbox").simulate("keyUp");
+    expect(wrapper).toBeDefined();
+  });
+  it("test for onShowSelect()", () => {
+    wrapper.setState({
       searchFlag: true,
     });
-    wrapper.setState({
-      showData: {
-        image: { medium: "dgsdh" },
-        summary: "summary",
-        network: { name: "name", country: { code: "US" } },
-        schedule: { days: ["1"], time: "wyeuywe" },
-        genres: ["drama"],
-      },
-    });
-    wrapper2.update();
-   jest.spyOn(wrapper2.instance(), "onShowSelect");
+
+    jest.spyOn(wrapper.instance(), "onShowSelect");
     const e = { keyCode: 13, target: { value: "dfdf" } };
-    wrapper2.instance().onShowSelect(e);
-    expect(wrapper2).toBeDefined();
-  });
-it("test for component episode", () => {
-    let wrapper4 = mount(<ShowContainer />);
-    wrapper4.setState({ showdetails: true });
-    wrapper4.setState({ showDetails: true });
-    wrapper4.setState({ filterShow: true });
-    wrapper4.setState({
-      tabsData: [
-        {
-          character: { image: { medium: "" } },
-          image: { medium: "dgsdh" },
-          summary: "summary",
-          network: { name: "name", country: { code: "US" } },
-          schedule: { days: ["1"], time: "wyeuywe" },
-          genres: ["drama"],
-        },
-      ],
-    });
-    wrapper4.setState({ showTab: "Episode" });
-    wrapper4.update();
+    wrapper.instance().onShowSelect(e);
+    expect(wrapper).toBeDefined();
   });
 
   it("test for fetchShows()", () => {
@@ -136,23 +64,7 @@ it("test for component episode", () => {
     wrapper.instance().onShowSearch(e);
     expect(addMock).toHaveBeenCalledWith(e);
   });
-  it("test for onShowSelect ()", () => {
-    wrapper.setState({
-      showData: {
-        image: { medium: "dgsdh" },
-        summary: "summary",
-        network: { name: "name", country: { code: "US" } },
-        schedule: { days: ["1"], time: "wyeuywe" },
-        genres: ["drama"],
-      },
-    });
-    const addMock = jest.spyOn(wrapper.instance(), "onShowSelect");
-    const e = { keyCode: 13, target: { value: "dfdf" } };
-    wrapper.instance().onShowSelect(e);
-    expect(addMock).toHaveBeenCalledWith(e);
-  });
-  
- 
+
   it("test for filterGenres ()", () => {
     let wrapper1 = mount(<ShowContainer />);
     wrapper1.setState({
@@ -172,21 +84,13 @@ it("test for component episode", () => {
   });
   it("test for setGenre ()", () => {
     let wrapper1 = mount(<ShowContainer />);
-    wrapper1.setState({shows:[{genres:["Drama"],rating:{average:8}}]})
-        const addMock = jest.spyOn(wrapper1.instance(), "setGenreType");
+    wrapper1.setState({
+      shows: [{ genres: ["Drama"], rating: { average: 8 } }],
+    });
+    const addMock = jest.spyOn(wrapper1.instance(), "setGenreType");
     wrapper1.instance().setGenreType();
     expect(addMock).toHaveBeenCalledWith();
   });
-
-  it("test for component render", () => {
-    wrapper.setState({ showdetails: false });
-    wrapper.setState({popularshows:[{show:{id:'1',rating:{average:8}}}]});
-    // wrapper.find('#showImage').simulate('click')
-   expect(wrapper).toBeDefined();
-  });
-
-
-
 });
 
 it("fetch articles on #componentDidMount", () => {

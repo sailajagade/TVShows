@@ -1,4 +1,73 @@
-.menu-item {
+.background
+{
+   background-color: black; 
+}
+.image-margin
+{
+  margin-right:8px;
+  margin-left:8px
+}
+.text-color
+{
+ color: white;
+ font-size:20px
+}
+.prev
+{
+  margin-right: 25px;
+}
+.margin
+{
+ margin-left:40px;
+ margin-right:40px;
+padding-bottom:20px;
+}
+.bg-color
+{
+
+  color:white;
+  font-size: none;
+}
+.fa-home
+{
+  font-size: 40px;
+}
+.pagination-margin{
+  margin-left: 60px;
+  margin-right: 60px;
+}
+.scroll-menu-arrow {
+  cursor: pointer;
+  font-size:30px;
+  color: red;  
+}
+.fontStyle
+{
+  font-size: 18px;
+ font-family: 'Roboto';
+}
+.font-Style
+{
+  font-size: 18px;
+  font-family: 'Roboto';
+}
+.pagination {
+  font-size: 16px;
+  margin: 4px 4px;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.row {margin: 0 -5px;}
+
+
+
+
+
+
+
+/* .menu-item {
   user-select: none;
   cursor: pointer;
   border: none;
@@ -8,61 +77,22 @@
 }
 .menu-item.active {
   border: 1px solid;
-}
-.scroll-menu-arrow {
-  cursor: pointer;
-  font-size:30px;
-  color: red;
-  
-}
-.textcolor
-{
- color: white;
- font-size:20px
-}
+} */
 
-.pagination{
-  flex-wrap:wrap
-}
-.detailsCard{  
+
+/* .detailsCard{  
 flex-wrap:wrap;
 background: #F7F7F7;
-}
+} */
 
-.fontStyle
-{
-  font-size: 18px;
- font-family: 'Roboto';
- /* height: 120px; */
-}
- 
-.pagination a {
-  font-size: 16px;
-  margin: 4px 4px;
-}
-
+/* 
 .font-family{
   font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.row {margin: 0 -5px;}
+} */
 
 
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-}
 
-.margin
-{
- margin-left:40px;
- margin-right:40px;
-padding-bottom:20px;
-}
+
 .marginLeft
 {
   margin-left:70px;
@@ -75,35 +105,23 @@ padding-bottom:20px;
   max-width: 100%;
   height: auto;
 }
-.cards-margin{
-  margin-left: 50px;
-  margin-right: 50px;
-}
-.pagination-margin{
-  margin-left: 60px;
-  margin-right: 60px;
-}
+
+
 .color{
   color:#e50914;
-  font-size: 35px;
-}
-.bg-color
-{
-
-  color:white;
-}
-.fa-home
-{
-  font-size: 40px;
+  font-size: 0px;
 }
 
-.homebtn{
+
+
+.home-btn{
     color: white;
     font-size: 20px;  
     width: 80px;
   
+    
 }
-.navbtn{
+.nav-btn{
   color: white;
     font-size: 20px;  
     width: 80px;
@@ -121,7 +139,7 @@ padding-bottom:20px;
   background: white;
 }
 
-.navbar2{
+.nav-bar{
   background: black;
   display: flex;
   text-align: center;
@@ -131,33 +149,7 @@ padding-bottom:20px;
 .nav{
   background: black;
 }
-table{
-  overflow: hidden;
-}
-#searchbox,#genre,#rating{
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px 4px 4px 4px;
-  box-sizing: border-box;
-  font-size: large;
-}
-#searchbox
-{
-  background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
-  background-size:contain;
-  background-repeat: no-repeat;
-  text-indent: 18px;
-  background-size: 26px;
-  background-position: right;
-}
-#searchbox:focus {
-  background-image:none;
-  text-indent:0px
-  }
-#button{
+/* #button{
   width: 50%;
   padding: 12px 20px;
   margin: 0px;
@@ -169,13 +161,13 @@ table{
   background:rgb(94, 138, 255);
   color: white;
   font-size: large;
-}
+} */
 #searchbox::-webkit-input-placeholder {
   font-size: 18px;
   line-height: 3;
   text-align: center;
 }
-.aa{
+/* .aa{
   position: absolute;
   outline: 0;
   transition: all .5s;
@@ -187,15 +179,15 @@ table{
   min-height: 43px;
   opacity: 1;
   cursor: pointer;
-}
-#image{
+} */
+/* #image{
     display: block;
     max-width: 100%;
     height: auto;
     width:auto
   
-}
-#outer-div {
+} */
+/* #outer-div {
   width: 100%;
   text-align: center;
   background-color: #0666a3
@@ -206,20 +198,13 @@ table{
   margin: 0 auto;
   padding: 3px;
   background-color: #8ebf42
-}
-.sty{
+} */
+/* .sty{
  margin-right:8px;
  margin-left:8px
-}
-.prev
-{
-  margin-right: 25px;
-}
-.imageMargin
-{
-  margin-right:8px;
-  margin-left:8px
-}
+} */
+
+
 .heading
 {
   font-size:16px;
@@ -231,133 +216,12 @@ table{
  margin-right:10px;
  margin-bottom: 10px;
 }
-.background
-{
-   background-color: black; 
-}
 
-  /* For 1024 Resolution */  
-  @media only screen   
-and (min-device-width : 320px)   
-and (max-device-width : 568px)  
 
-{  .displayImage,.mediaQ {
-  width: 100px!important;
-  font-size: 12px;
 
-}
-}  
-@media only screen   
-and (min-device-width : 320px)   
-and (max-device-width : 514px)  
 
-{  .displayImage,.mediaQ  {
-  width: 120px!important;
-  font-size: 14px;
-  }
-  #mainImage
-  {
-    width: 200px!important;
-  }
-  .color
-  {
-    font-size: 30px;
-  }
-.paddingbtm{
-  font-size: 22px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-}
-} 
 
-@media only screen     
-and (max-device-width : 1024px)  
 
-{  .color,.marginLeft  {
-  font-size: 30px;
-  /* margin-left: 0px; */
- 
-  }
- #castImage
- {
-   column-count: 3;
- }
-  .homebtn
-  {
-    margin-left: 60px;
-  }
-}
-@media only screen     
-and (max-device-width : 1440px)  
-{
-  #mainImage
-  {
-    width: 300px;
-  }
-  .btn{
-    margin-left: 25px;
-  }
-   
-  .fontStyle{
-    font-size: 18px;
-  }
-}
-@media only screen     
-and (min-device-width : 768px) 
-{
-  
-  #searchbox
-  {
-    width: 600px;
-    margin-left: 60px;
-  }
-  .marginLeft
-  {
-    margin-left: 60px;
-  }
-}
-
-@media only screen     
-and (min-device-width : 320px) and (max-device-width:514px)
-{
-  
-  
-  #searchbox,.marginLeft
-  {
-    width: 200px;
-    margin-left: 50px;
-   
-  }
-  }
-@media only screen     
-and (min-device-width : 375px) and (max-device-width:514px)
-{
-  
-  
-  #searchbox,.marginLeft
-  {
-    width: 250px;
-    margin-left: 50px;
-   
-  }
-  }
-  
-  @media only screen     
-and (min-device-width : 425px) and (max-device-width:514px)
-{
-  
-  #searchbox,.marginLeft
-  {
-    width: 300px;
-    margin-left: 50px;
-   
-  }
- 
-  }
-
-   
-   
- 
  
 
   

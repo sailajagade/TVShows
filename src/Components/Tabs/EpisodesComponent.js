@@ -1,5 +1,8 @@
 import React from "react";
 import "../../Css/Shows.css";
+import "../../Css/Tabs.css";
+
+import "../../Css/Media.css";
 
 const EpisodesComponent = (props) => {
   const { tabsData } = props;
@@ -14,7 +17,7 @@ const EpisodesComponent = (props) => {
             <div className="card">
               <img src={post && post.image && post.image.medium} alt="img" />
 
-              <div className="card-footer cards fontStyle">
+              <div className="card-footer cards font-Style">
                 <div>
                   <b>Season:</b>
                   {post.season}

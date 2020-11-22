@@ -1,21 +1,20 @@
 import React, { Component } from "react";
-import { SHOWSELECT } from "../Api/url";
+import { SHOW_SELECT } from "../Api/Url";
 import { getData } from "../Api/Api";
-import DisplayShowDetails from "../Components/displayShowDetails";
+import DisplayShowDetails from "../Components/DisplayShowDetails";
 
 class displayShowDetailsContainer extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       tabsData: [],
       searchFlag: false,
-      showTab: this.props.showTab,
+      showTab: this.props.location.state.showTab,
     };
   }
 
   getShowDetails = async (e, id, tabName = "") => {
-    const url = tabName ? SHOWSELECT + id + "/" + tabName : SHOWSELECT + id;
+    const url = tabName ? SHOW_SELECT + id + "/" + tabName : SHOW_SELECT + id;
     getData(url).then((res) => {
       this.setState({
         showTab: e,
@@ -29,18 +28,18 @@ class displayShowDetailsContainer extends Component {
   };
 
   routeback = () => {
-    const { fetchShows } = this.props;
+    // const { fetchShows } = this.props.location.state;
     this.setState({
       showdetails: false,
       searchFlag: false,
     });
-    fetchShows();
-    if (document.getElementById("searchbox"))
-      document.getElementById("searchbox").value = "";
+
+    // fetchShows();
+    this.props.history.push({ pathname: "/" });
   };
 
   render() {
-    const { showData } = this.props;
+    const { showData } = this.props.location.state;
     const { currentPage, postsPerPage, tabsData, showTab } = this.state;
 
     return (

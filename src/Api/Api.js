@@ -1,5 +1,5 @@
 import Axios from "axios";
 
-export function getData(FETCHALLSHOWS){
-    return Axios.get(FETCHALLSHOWS)
+export function getData(FETCHALL_SHOWS){
+    return Axios.get(FETCHALL_SHOWS)
 }

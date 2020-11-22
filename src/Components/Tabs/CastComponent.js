@@ -1,5 +1,8 @@
 import React from "react";
 import "../../Css/Shows.css";
+import "../../Css/Tabs.css";
+
+import "../../Css/Media.css";
 
 const CastComponent = (props) => {
   const { tabsData } = props;
@@ -11,8 +14,9 @@ const CastComponent = (props) => {
             className=" cards col-lg-2 mt-5  col-md-4 col-sm-6"
             key={post.character.name}
           >
-            <div className="card" id="castImage">
+            <div className="card" id="cast-div">
               <img
+                id="cast-image"
                 alt="img"
                 src={
                   post &&
