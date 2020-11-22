@@ -7,7 +7,18 @@ import ShowContainer from "../Containers/DisplayShowDetailsContainer";
 configure({ adapter: new Adapter() });
 
 describe("Showdetailscontainer tests", () => {
-  let wrapper = mount(<ShowContainer />);
+  var location=  {
+    state:{showData: {
+      id: "1",
+      image: { medium: "dgsdh" },
+      summary: "summary",
+      network: { name: "name", country: { code: "US" } },
+      schedule: { days: ["1"], time: "wyeuywe" },
+      genres: ["drama"],
+    }}}
+    let history=[]
+  let wrapper = mount(<ShowContainer  location={location} history={history}
+       />);
   wrapper.setState({
     shows: [
       { show: { image: { medium: "http://abc" }, rating: { average: 6.5 } } },
@@ -56,22 +67,24 @@ describe("Showdetailscontainer tests", () => {
   });
 });
 describe("tabs component", () => {
-  let app1 = mount(<ShowContainer />);
-  app1.setState({
-    shows: [
-      { show: { image: { medium: "http://abc" }, rating: { average: 6.5 } } },
-    ],
-  });
-  app1.setState({
-    showData: {
+  let location=  {
+    state:{showData: {
       id: "1",
       image: { medium: "dgsdh" },
       summary: "summary",
       network: { name: "name", country: { code: "US" } },
       schedule: { days: ["1"], time: "wyeuywe" },
       genres: ["drama"],
-    },
+    }}}
+  let app1 = mount(<ShowContainer location={location}  />);
+  app1.setState({
+    shows: [
+      { show: { image: { medium: "http://abc" }, rating: { average: 6.5 } } },
+    ],
   });
+
+  
+  
 
   app1.setState({
     tabsData: [
@@ -111,7 +124,17 @@ describe("tabs component", () => {
   });
 
   it("test for crew ", () => {
-    let app2 = mount(<ShowContainer />);
+    let location=  {
+      state:{showData: {
+        id: "1",
+        image: { medium: "dgsdh" },
+        summary: "summary",
+        network: { name: "name", country: { code: "US" } },
+        schedule: { days: ["1"], time: "wyeuywe" },
+        genres: ["drama"],
+      }}}
+    let app2 = mount(<ShowContainer location={location}    
+  />);
     app2.setState({
       shows: [{ person: { image: { medium: "" }, rating: { average: 6.5 } } }],
     });
@@ -151,7 +174,16 @@ describe("tabs component", () => {
   });
 
   it("test for gallery ", () => {
-    let app3 = mount(<ShowContainer />);
+    let location=  {
+      state:{showData: {
+        id: "1",
+        image: { medium: "dgsdh" },
+        summary: "summary",
+        network: { name: "name", country: { code: "US" } },
+        schedule: { days: ["1"], time: "wyeuywe" },
+        genres: ["drama"],
+      }}}
+    let app3 = mount(<ShowContainer location={location} />);
     app3.setState({
       shows: [
         { show: { image: { medium: "http://abc" }, rating: { average: 6.5 } } },
@@ -201,7 +233,16 @@ describe("tabs component", () => {
   });
 
   it("test for cast ", () => {
-    let app2 = mount(<ShowContainer />);
+    let location=  {
+      state:{showData: {
+        id: "1",
+        image: { medium: "dgsdh" },
+        summary: "summary",
+        network: { name: "name", country: { code: "US" } },
+        schedule: { days: ["1"], time: "wyeuywe" },
+        genres: ["drama"],
+      }}}
+    let app2 = mount(<ShowContainer location={location} />);
     app2.setState({
       shows: [{ person: { image: { medium: "" }, rating: { average: 6.5 } } }],
     });
