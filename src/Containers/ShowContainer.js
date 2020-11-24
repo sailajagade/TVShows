@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Shows from "../Components/DisplayShows";
-import { FETCHALL_SHOWS, SEARCH_RESULTS, SHOW_SELECT } from "../Api/Url";
-import SearchComponent from "../Components/SearchComponent";
-import { getData } from "../Api/Api";
-import DisplayShowDetailsContainer from "./DisplayShowDetailsContainer";
+import {fetchShow,onSelect} from "./CommonMethods";
 class showContainer extends Component {
   constructor(props) {
     super(props);
@@ -22,13 +19,11 @@ class showContainer extends Component {
   }
 
   componentDidMount = () => {
-    this.fetchShows();
+        this.fetchShows();
   };
   fetchShows = () => {
-    if (document.getElementById("searchbox"))
-      document.getElementById("searchbox").value = "";
-    getData(FETCHALL_SHOWS)
-      .then((res) => {
+    let allShows=fetchShow()
+    allShows.then((res) => {
         this.setState(
           {
             shows: res.data,
@@ -79,9 +74,8 @@ class showContainer extends Component {
       });
   };
   onShowSelect = async (event) => {
-    const { id } = event;
-    getData(SHOW_SELECT + id)
-      .then((res) => {
+   let selectedData=onSelect(event);
+   selectedData.then((res) => {
         this.setState(
           {
             showDetails: true,
@@ -100,43 +94,21 @@ class showContainer extends Component {
       pathname: "/showdetails",
       state: {
         showData: this.state.showData,
-        showTab: this.state.showTab,
+        showTab: "Main",
         fetchShows: this.fetchShows,
       },
     });
   };
-  onShowSearch = async (event) => {
-    this.setState({ showDetails: false });
-    const { value } = event.target;
-    try {
-      if (event.keyCode === 13) {
-        this.setState({ searchFlag: true });
-        getData(SEARCH_RESULTS + value).then((res) => {
-          this.setState({
-            shows: res.data,
-            searchPosts: res.data,
-          });
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  render() {
+   render() {
     const {
       shows,
-      showData,
       showsObj,
-      showDetails,
       searchPosts,
-      showTab,
       searchFlag,
       popularshows,
     } = this.state;
     return (
       <Fragment>
-        <SearchComponent onShowSearch={this.onShowSearch} />
-
         <Fragment>
           <div className="background" key="popular">
             <Shows
@@ -144,7 +116,7 @@ class showContainer extends Component {
               shows={shows}
               genre="Popular"
               onShowSelect={this.onShowSelect}
-              searchFlag={searchFlag}
+              searchFlag={false}
               fetchShows={this.fetchShows}
             />
           </div>
@@ -156,7 +128,7 @@ class showContainer extends Component {
                   currentPosts={showsObj[genre].length > 0 && showsObj[genre]}
                   shows={shows}
                   onShowSelect={this.onShowSelect}
-                  searchFlag={searchFlag}
+                  searchFlag={false}
                   genre={genre}
                   fetchShows={this.fetchShows}
                 />

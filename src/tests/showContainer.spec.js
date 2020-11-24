@@ -38,10 +38,7 @@ describe("ShowConatiner tests", () => {
     ],
   });
 
-  it("test for component render", () => {
-    wrapper.find("#searchbox").simulate("keyUp");
-    expect(wrapper).toBeDefined();
-  });
+ 
   it("test for onShowSelect()", () => {
     wrapper.setState({
       searchFlag: true,
@@ -58,14 +55,7 @@ describe("ShowConatiner tests", () => {
     wrapper.instance().fetchShows();
     expect(addMock).toHaveBeenCalledWith();
   });
-  it("test for onShowSearch ()", () => {
-    const addMock = jest.spyOn(wrapper.instance(), "onShowSearch");
-    const e = { keyCode: 13, target: { value: "dfdf" } };
-    wrapper.instance().onShowSearch(e);
-    expect(addMock).toHaveBeenCalledWith(e);
-  });
-
-  it("test for filterGenres ()", () => {
+   it("test for filterGenres ()", () => {
     let wrapper1 = mount(<ShowContainer />);
     wrapper1.setState({
       shows: [

@@ -77,9 +77,8 @@ class displayShows extends Component {
     this.setState({ arrowNumber: setarrowNumber });
     this.hideArrow();
   };
-  hideArrow = () => {
+  hideArrow = (currentPosts=[]) => {
     let { arrowNumber } = this.state;
-    let { currentPosts } = this.props;
     this.arrowLeft = this.Arrow({
       text: arrowNumber !== 1 ? "fa fa-chevron-circle-left fa-lg" : "",
       className: "arrow-prev",
@@ -99,15 +98,10 @@ class displayShows extends Component {
     });
   };
   render() {
-    this.hideArrow();
+   
     const { selected } = this.state;
-    const {
-      searchFlag,
-      currentPosts,
-      onShowSelect,
-      fetchShows,
-      genre,
-    } = this.props;
+    const {searchFlag,currentPosts,onShowSelect,fetchShows,genre}=this.props.location?this.props.location.state:this.props
+    this.hideArrow(currentPosts); 
     const menu = Menu(currentPosts, onShowSelect, searchFlag);
     return (
       <div className="margin">

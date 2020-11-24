@@ -9,7 +9,7 @@ class displayShowDetailsContainer extends Component {
     this.state = {
       tabsData: [],
       searchFlag: false,
-      showTab: this.props.location.state.showTab,
+      showTab:  this.props.location.state?this.props.location.state.showTab:'',
     };
   }
 
@@ -27,20 +27,13 @@ class displayShowDetailsContainer extends Component {
     this.setState({ currentPage: pageNumber });
   };
 
-  routeback = () => {
-    // const { fetchShows } = this.props.location.state;
-    this.setState({
-      showdetails: false,
-      searchFlag: false,
-    });
-
-    // fetchShows();
+  routeback = () => {    
     this.props.history.push({ pathname: "/" });
   };
 
   render() {
-    const { showData } = this.props.location.state;
-    const { currentPage, postsPerPage, tabsData, showTab } = this.state;
+    const { showData } = this.props.location.state?this.props.location.state:'';
+    const { currentPage, postsPerPage, tabsData,showTab } = this.state;
 
     return (
       <div>
