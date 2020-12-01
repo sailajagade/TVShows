@@ -1,21 +1,20 @@
 import React, { Component, Fragment } from "react";
 import Shows from "../Components/DisplayShows";
-import {fetchShow,onSelect} from "./CommonMethods";
+import {fetchShow} from "./CommonMethods";
+import { withRouter } from 'react-router-dom';
 class showContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchPosts: [],
       showsObj: {},
-      showDetails: false,
       shows: [],
       showData: [],
-      showTab: "",
       tabsData: [],
       searchFlag: false,
       genreTypes: [],
-      popularshows: [],
+      popularshows: []
     };
+   
   }
 
   componentDidMount = () => {
@@ -24,11 +23,10 @@ class showContainer extends Component {
   fetchShows = () => {
     let allShows=fetchShow()
     allShows.then((res) => {
-        this.setState(
+      this.setState(
           {
             shows: res.data,
-            searchFlag: false,
-            showDetails: false,
+            searchFlag: false
           },
           this.setGenreType
         );
@@ -65,7 +63,7 @@ class showContainer extends Component {
             if (genreTypes.includes(genre)) {
               newState.showsObj[genre].push(show);
 
-              this.setState(newState);
+             this.setState(newState);
             }
             return "";
           });
@@ -73,71 +71,40 @@ class showContainer extends Component {
         return "";
       });
   };
-  onShowSelect = async (event) => {
-   let selectedData=onSelect(event);
-   selectedData.then((res) => {
-        this.setState(
-          {
-            showDetails: true,
-            showData: res.data,
-            showTab: "Main",
-          },
-          this.routeToDetails
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  routeToDetails = () => {
-    this.props.history.push({
-      pathname: "/showdetails",
-      state: {
-        showData: this.state.showData,
-        showTab: "Main",
-        fetchShows: this.fetchShows,
-      },
-    });
-  };
-   render() {
+    render() {
     const {
       shows,
       showsObj,
-      searchPosts,
       searchFlag,
       popularshows,
     } = this.state;
     return (
-      <Fragment>
         <Fragment>
-          <div className="background" key="popular">
+          <div  key="popular">
             <Shows
-              currentPosts={!searchFlag ? popularshows : searchPosts}
+              currentPosts={popularshows}
               shows={shows}
               genre="Popular"
-              onShowSelect={this.onShowSelect}
               searchFlag={false}
               fetchShows={this.fetchShows}
+              history={this.props.history}
             />
           </div>
-          <div className="background">
             {!searchFlag &&
               Object.keys(showsObj).map((genre) => (
                 <Shows
                   key={genre}
                   currentPosts={showsObj[genre].length > 0 && showsObj[genre]}
                   shows={shows}
-                  onShowSelect={this.onShowSelect}
                   searchFlag={false}
                   genre={genre}
+                  history={this.props.history}
                   fetchShows={this.fetchShows}
                 />
               ))}
-          </div>
         </Fragment>
-      </Fragment>
-    );
+          );
   }
 }
 
-export default showContainer;
+export default withRouter(showContainer);

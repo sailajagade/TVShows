@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
 
-import {fetchShow,onShowSearchData,onSelect} from "../Containers/CommonMethods";
+import {fetchShow} from "../Containers/CommonMethods";
+import tv from '../images/TV.jpg'
 import "../Css/Shows.css";
-import "../Css/Media.css";
+// import "../Css/Media.css";
 
 
 class SearchComponent extends Component {
@@ -11,6 +12,7 @@ class SearchComponent extends Component {
     super(props);
     this.state=
     {
+      searchValue:'',
       searchPosts:[],
       showDetails: false,
       shows: [],
@@ -19,6 +21,7 @@ class SearchComponent extends Component {
       searchFlag: false
     }
   }
+
   fetchShows = () => {
     let showsAll=fetchShow()
     showsAll.then((res) => {
@@ -35,75 +38,43 @@ class SearchComponent extends Component {
         console.log(error);
       });
   }
-  onShowSelect = async (event) => {
-    let selectData=onSelect(event);
-    selectData.then((res) => {
-         this.setState(
-           {
-             showDetails: true,
-             showData: res.data,
-             showTab: "Main",
-           },
-           this.routeToDetails
-         );
-       })
-       .catch((error) => {
-         console.log(error);
-       });
-   };
-    onShowSearch = async (event) => {
-     this.setState({ showDetails: false });
-        try {
-          if (event.keyCode === 13) {
-         this.setState({ searchFlag: true });
-         let searchData=onShowSearchData(event);
-         searchData.then((res) => {
-           this.setState({
-             shows: res.data,
-             searchPosts: res.data,
-           },this.routeToShows);
-         });
-          } } catch (err) {
-       console.log(err);
-     }
-   };
+ 
+         
+      onShowSearch = async (event) => {
+        console.log(event)
+        const { value } = event.target;
+       this.setState({ showDetails: false ,searchValue:value});
+      event.keyCode===13&&
+     this.props.history.push({pathname:`/displayShows/${value}`,
+     state:
+     {
+searchFlag:true
+       }
+     })
+   }
 
-  routeToDetails = () => {
-    this.props.history.push({
-      pathname: "/showdetails",
-      state: {
-        showData: this.state.showData,
-        showTab: this.state.showTab,
-        fetchShows: this.fetchShows,
-      },
-    });
-  };
-  routeToShows=()=>
-    {
-      this.props.history.push({pathname:'/displayShows',state:
-  {
-    currentPosts:this.state.searchPosts,
-    shows:this.state.shows,
-    genre:"",
-    onShowSelect:this.onShowSelect,
-    searchFlag:true,
-    fetchShows:this.fetchShows
-  }})
-    }
+ 
 render(){
   return (
-    <div className="nav">
-      <div className="col-lg-2 mt-4 marginLeft">
+    <div className="nav flex">
+      <div className="col-lg-2 mt-3 Tvshows" >
         <b>
-          <h1 className=" mt-3 color">TV Shows</h1>
+          <h1 className=" color" style={{color:'maroon'}}>TV Shows</h1>
         </b>
+        {/* <img src={tv} width="100" height="60" alt="no data" /> */}
       </div>
-      <div className="col-lg-5 mt-3">
-        <input
+      <div className="col-lg-5 mt-2">
+        {/* <input
           id="searchbox"
           placeholder=""
           onKeyUp={(event) =>this.onShowSearch(event)}
-        />
+        /> */}
+
+<div className="search-box" style={{marginBottom:'20px',marginTop:'10px'}}>
+<input className="form-control" id="searchbox" placeholder="" 
+onKeyUp={(event) =>this.onShowSearch(event)}/>
+<div style={{marginTop:'10px'}}></div>
+</div>
       </div>
         </div>
   );

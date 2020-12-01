@@ -3,49 +3,76 @@ import { SHOW_SELECT } from "../Api/Url";
 import { getData } from "../Api/Api";
 import DisplayShowDetails from "../Components/DisplayShowDetails";
 
+import {onSelect} from "./CommonMethods";
+
 class displayShowDetailsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabsData: [],
       searchFlag: false,
-      showTab:  this.props.location.state?this.props.location.state.showTab:'',
     };
   }
+  componentDidMount=()=> 
+  {
+    const Url = window.location.hash.split("/");
+    let selectData=onSelect(Url[Url.length-1]); 
+    const episodeUrl =  SHOW_SELECT + Url[Url.length-1]+ "/episodes" ;
+    const castUrl =SHOW_SELECT + Url[Url.length-1]+ "/cast" ;
+    const crewUrl =SHOW_SELECT + Url[Url.length-1]+ "/crew" ;
+    const galleryUrl =SHOW_SELECT + Url[Url.length-1]+ "/images" ;
 
-  getShowDetails = async (e, id, tabName = "") => {
-    const url = tabName ? SHOW_SELECT + id + "/" + tabName : SHOW_SELECT + id;
-    getData(url).then((res) => {
-      this.setState({
-        showTab: e,
-        currentPage: 1,
-        tabsData: res.data,
-      });
+    Promise.all([  getData(episodeUrl), getData(castUrl),getData(crewUrl), getData(galleryUrl)]).then((values) => {
+     this.setState({
+       episodeData:(values[0].data),castData:(values[1].data),
+       crewData:(values[2].data),galleryData:(values[3].data)
+      } )
+     
+    });
+   
+    selectData.then((res) => {
+         this.setState(
+           {
+             showData: res.data,
+             showName:Url[Url.length-1]
+           },
+           this.routeToDetails
+         );
+       })
+  
+      }
+  routeToDetails = () => {
+    this.props.history.push({
+      pathname: `/showdetails/${this.state.showName}`,
+      state: {
+        showData: this.state.showData,
+        showTab: this.state.showTab,
+        fetchShows: this.fetchShows,
+      },
     });
   };
   paginate = (pageNumber) => {
     this.setState({ currentPage: pageNumber });
   };
 
-  routeback = () => {    
+  routeback = () => {
+    this.setState({
+      searchFlag: false,
+    });
     this.props.history.push({ pathname: "/" });
   };
 
   render() {
-    const { showData } = this.props.location.state?this.props.location.state:'';
-    const { currentPage, postsPerPage, tabsData,showTab } = this.state;
-
+    const { episodeData,castData,crewData,galleryData } = this.state;
     return (
       <div>
         <DisplayShowDetails
-          currentPage={currentPage}
-          postsPerPage={postsPerPage}
-          showData={showData}
-          getShowDetails={this.getShowDetails}
-          showTab={showTab}
-          tabsData={tabsData}
+          showData={this.state.showData}
           paginate={this.paginate}
           routeback={this.routeback}
+          episodeData={episodeData}
+          castData={castData}
+          crewData={crewData}
+          galleryData={galleryData}
         />
       </div>
     );

@@ -11,13 +11,13 @@ export function  fetchShow ()  {
         return ans
   };
   
-export function  onSelect  (event)  {
-    const { id } = event;
+export function  onSelect  (id)  {
+    // const { id } = event;
     return getData(SHOW_SELECT + id)
      
   };
-   export function onShowSearchData (event) {
-    const { value } = event.target;
+   export function onShowSearchData (value) {
+    // const { value } = event.target;
      let ans=   getData(SEARCH_RESULTS + value)
      return ans
      

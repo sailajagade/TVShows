@@ -5,16 +5,25 @@ import { configure } from "enzyme";
 import { mount } from "enzyme";
 import DisplayShows from "../Components/DisplayShows";
 configure({ adapter: new Adapter() });
+jest.mock("axios", () => {
+  const exampleArticles = [{ title: "test article", url: "test url" }];
 
-describe("Showdetailscontainer tests", () => {
+  return {
+    get: jest.fn(() => Promise.resolve(exampleArticles)),
+  };
+});
+describe("DisplayShows tests", () => {
+
+  it("test for DisplayShows ()", () => {
     let  currentPosts=[{id:'1',rating:{average:7}}]
-    let onShowSelect=jest.fn();
-  let wrapper = mount(<DisplayShows currentPosts={currentPosts} onShowSelect={onShowSelect}/>);
-   wrapper.setState({arrnumber:3})
-
-  it("test for getShowDetails ()", () => {
-    wrapper.instance().onArrowClick('arrow-next');
-    wrapper.instance().Arrow('fa fa-chevron-circle-right fa-lg','arrow-next');
-    wrapper.find('.display-image').simulate('click')
+    let location={
+      state:
+      {
+        currentPosts:[{show:{id:'1',rating:{average:7}}}]
+      }
+    }
+  let wrapper = mount(<DisplayShows currentPosts={currentPosts} 
+  location={location}/>);
+  expect(wrapper).toBeDefined();
   });
 })

@@ -1,11 +1,11 @@
 #searchbox,#genre,#rating{
   width: 100%;
-  padding: 12px 20px;
+  padding: 12px 20px!important;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
-  border-radius: 4px 4px 4px 4px;
-  box-sizing: border-box;
+  border-radius: 4px 4px 4px 4px!important;
+  /* box-sizing: border-box; */
   font-size: large;
 }
 #searchbox
@@ -13,556 +13,312 @@
   background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
   background-size:contain;
   background-repeat: no-repeat;
-  text-indent: 18px;
-  background-size: 26px;
+  text-indent: 18px!important;
+  background-size: 26px!important;
   background-position: right;
 }
 #searchbox:focus {
   background-image:none;
   text-indent:0px
   }
-
-  @media only screen   
-  and (min-device-width : 320px)   
-  and (max-device-width : 568px)  
+ 
   
-  {  
-    #Gallery,#Episode
-    {
-      padding-left: 20px;
-    }
-    
-    .display-image,.text-color {
-    width: 100px!important;
-    font-size: 16px!important;  
-  }
-  .home-btn{
-    margin-left: 10px;
-  }
-  }  
-  @media only screen   
-  and (min-device-width : 320px)   
-  and (max-device-width : 514px)  
-  
-  {  
-    #Gallery,#Episode
-    {
-      padding-left: 20px;
-    }
-    .display-image,.text-color  {
-    width: 120px!important;
-    font-size: 14px;
-    }
-    .padding-btm
-  
-    {
-      font-size: 22px;margin-bottom: 0px;padding-bottom: 0px;
-    }
-    #searchbox
-    {
-      width: 200px;
-      margin-left: 50px;   
-    }
+/* @media  screen   
+and (min-device-width : 320px) and (max-device-width : 568px) 
+{
   .marginLeft
-    {
-      margin-left: 80px;
-     
-    }
-    .image-margin
-    {
-      margin-right: 14px;
-    }
-    .pagination
-    {
-      margin-left: 18px;
-    }
-    #cast-img
-    {
-      min-height: 200px;
-      max-height: 200px;
-    }
-    #cast-div
-    {
-      width: 200px!important;
-      min-width: 160px;
-      max-width: 160px;
-      margin-left:    10px;
-    }
-    #main-image,#maindiv
-    {
-      width: 200px!important;
-      min-width: 200px;
-      max-width: 200px;
-      /* margin-left:   4px; */
-    }  
-    .color
-    {
-      font-size: 25px;
-    }
-    .scroll-menu-arrow {
-      font-size:20px;    
-    }
-    .home-btn{
-      color: white;
-      font-size: 2px;  
-      width: 80px;
-    
-  }
-  .nav-btn{
-    color: white;
-      font-size: 16px;  
-      width: 80px;
-   padding-top:5px
-  
-  }
-  
-  @media only screen   
-  and (min-device-width : 360px)   
-  and (max-device-width : 640px)  
+{
+margin-left:90px;
+background:#141414
+}
+.color{
+font-size: 26px!important;
+color: white;
+}
+#searchbox
+{
+width: 250px!important;
+margin-left: 25px!important;
+height:45px
+}
+.image-size{
+height:100px;
+width: 120px;
+}
+  .scroll-menu-arrow {
+  padding: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.genre-style
+{
+  margin-top: 15px;
+  font-size:22px;
+  margin-left:50px;
+} 
+.row{
+  width: 250px;
+}  
+.home-btn
   {
-    #cast-img
-    {
-      min-height: 200px;
-      max-height: 200px;
-    }
-    #cast-div
-    {
-      width: 200px!important;
-      min-width: 200px;
-      max-width: 200px;
-      margin-left:    20px;
-    }
-    #main-image,#maindiv
-    {
-      width: 200px!important;
-      min-width: 230px;
-      max-width: 230px;
-      /* margin-left:   4px; */
-    } 
-    .color{
-      font-size: 30px;
-    }
-    #searchbox
-    {
-      width:250px;
-      margin-left: 20px;
-    }
+    margin-left: 100px!important;
   }
-  
-  } 
-  @media only screen   
-  and (min-device-width : 360px)   
-  and (max-device-width : 640px)  
-  
+ .tabs
   {
-    #searchbox
-    {
-      width: 230px;
-      margin-left: 60px;   
-    }
+   margin-left:50px;
+   font-size:18px;
+   margin-top:20px   
   }
-  
-  
-  @media only screen     
-  and (min-device-width : 768px) 
+  .fontStyle
   {
-    
-    .pagination
-    {
-      margin-left: 38px;
-    }
-    #cast-img
-    {
-      min-height: 200px;
-      max-height: 200px;
-    }
-    #cast-div
-    {
-      width: 200px!important;
-      min-width: 180px;
-      max-width: 180px;
-      margin-left:   35px;
-    }  
-    #searchbox
-    {
-      width: 580px;
-      margin-left: 50px;
-    }
-    .color{
-      font-size: 35px;
-    }
+    font-size: 12px;
+  }   
+} */
+
+
+
+/* @media  screen   
+   and (max-device-width : 500px) 
+  {
     .marginLeft
-    {
-      margin-left: 50px;
-    }
-    .home-btn
-    {
-      padding-left: 10px;
-      padding-right: 20px;
-      margin-left: 20px;
-    }
-  }
-  
-  
-  @media only screen   
-  and (min-device-width : 375px)   
-  and (max-device-width : 514px)  
-  
-  {  
-    #Gallery,#Episode
-    {
-      padding-left: 20px;
-      
-    }
-    .display-image,.text-color  {
-    width: 120px!important;
-    font-size: 14px;
-    }
-    .padding-btm
-  
-    {
-      font-size: 22px;margin-bottom: 0px;padding-bottom: 0px;
-    }
-    #searchbox
-    {
-      width: 250px;
-      margin-left: 50px;   
-    }
-  .marginLeft
-    {
-      margin-left: 105px;
-     
-    }
-    .image-margin
-    {
-      margin-right: 14px;
-    }
-    .pagination
-    {
-      margin-left: 38px;
-    }
-    #cast-img
-    {
-      min-height: 200px;
-      max-height: 200px;
-    }
-    #cast-div
-    {
-      width: 200px!important;
-      min-width: 180px;
-      max-width: 180px;
-      margin-left:   35px;
-    }
-    #main-image,#maindiv
-    {
-      width: 200px!important;
-      min-width: 240px;
-      max-width: 240px;
-      /* margin-left:   20px; */
-    }
-    .color
-    {
-      font-size: 30px;
-    }
+{
+  margin-left:90px;
+ background:#141414
+}
+.color{
+  font-size: 30px!important;
+  color: white;
+}
+.image-size{
+  height:100px;
+  width: 120px;
+}
     .scroll-menu-arrow {
-      font-size:20px;    
-    }
-    .home-btn{
-      color: white;
-      font-size: 2px;  
-      width: 80px;
-        margin-left: 20px;
-      
-    
+    padding: 5px;
+    cursor: pointer;
+    font-size: 20px;
   }
-  .nav-btn{
-    color: white;
-      font-size: 16px;  
-      width: 80px;
-   padding-top:5px
-  
-  }
-  
+  .genre-style
+  {
+    margin-top: 15px;
+    font-size:22px;
+    margin-left:50px;
   } 
-  
-    
-  @media only screen   
-  and (min-device-width : 425px)   
-  and (max-device-width : 514px)  
-  
-  {  
-    #Gallery,#Episode
-    {
-      padding-left: 20px;
-    }.display-image,.text-color  {
-    width: 120px!important;
-    font-size: 14px;
-    }
-    .padding-btm
-  
-    {
-      font-size: 17px;margin-bottom: 0px;padding-bottom: 0px;
-    }
-    #searchbox
-    {
-      width: 300px;
-      margin-left: 50px;   
-    }
-  .marginLeft
-    {
-      margin-left: 120px;
-     
-    }
-    .image-margin
-    {
-      margin-right: 14px;
-    }
-    .pagination
-    {
-      margin-left: 50px;
-    }
-    #cast-img
-    {
-      min-height: 200px;
-      max-height: 200px;
-    }
-    #cast-div
-    {
-      width: 200px!important;
-      min-width: 200px;
-      max-width: 200px;
-      margin-left:    50px;
-    }
-    #main-image,#maindiv
-    {
-      width: 250px!important;
-      min-width: 200px;
-      max-width: 200px;
-      /* margin-left:   4px; */
-    }
-    .color
-    {
-      font-size: 30px;
-    }
-    .scroll-menu-arrow {
-      font-size:20px;    
-    }
-    .home-btn{
-      color: white;
-      font-size: 2px;  
-      width: 80px;
-        margin-left: 20px;
-      
-    
-  }
-  .nav-btn{
-    color: white;
-      font-size: 16px;  
-      width: 80px;
-   padding-top:5px
-  
-  }
-  
+  .row{
+    width: 280px;
   }  
-  
-  
-     
-  @media  screen   
-  and (max-device-width : 1024px)  and (min-device-width:950px)
-  {
-
-    .nav-btn{
-      color: white;
-        font-size: 20px;  
-        width: 75px;
-     padding-top:12px;
-     margin-left: 0px;
-    
-    }
-  #cast-img {
-      min-height: 200px;
-      max-height: 200px;
-  }
-  #cast-div
-  {
-    width: 200px!important;
-    min-width: 150px!important;
-    max-width: 150px!important;
-    margin-left:    10px;
-  }
-  #main-image,#maindiv
-  {
-    width: 200px!important;
-    min-width: 270px;
-    max-width: 270px;
-  }
-  #searchbox
+       .home-btn
     {
-      width: 600px;
-      margin-left: 90px;
+      margin-left: 120px!important;
     }
-    .col-lg-1
+   .tabs
     {
-      width:25%
-    }
-  }
-  @media  screen   
-  and (min-width : 992px) 
-  {
-    
-    
-    .color{
-      font-size: 35px;
-    }
-    .nav-bar{
-      text-align: start;
-    }
-    .home-btn
-    {
-      margin-left: 30px;
-    }
-    .col-lg-2
-    {
-  max-width: 25%;
+     margin-left:50px;
+     font-size:20px;
+     margin-top:20px   
     }
     .fontStyle
-  {
-    font-size: 18px;
-   font-family: 'Roboto';
-   height: 120px;
-  }
-    #cast-img {
-      min-height: 300px;
-      max-height: 300px;
-  }
-  #cast-div
-  {
-    width: 200px!important;
-    min-width: 220px!important;
-    max-width: 220px!important;
-    margin-left:    10px;
-  }
-  .pagination{
-    margin-left: 15px;
-  }
-  #main-image
-  {
-    width: 200px!important;
-    min-width: 220px!important;
-    max-width: 220px!important;
-    /* margin-left:    10px; */
-  }
-  .marginLeft
-  {
-    margin-left: 60px;
-  }
-  #searchbox
-  {
-    width: 600px;
-    margin-left: 40px;
-  }
-  }
-  
-    
-  @media only screen   
-  and (min-device-width : 540px)   
-  and (max-device-width : 720px)  
-  
-  {   
-    #Gallery,#Episode
     {
-      padding-left: 20px;
-    }
-    #searchbox
-    {
-      margin-left: 50px;
-      width: 400px;
-    }
-    #cast-img
-    {
-      min-height: 300px;
-      max-height: 300px;
-    }
-    #cast-div
-    {
-      width: 200px!important;
-      min-width: 300px;
-      max-width: 300px;
-      margin-left:70px;
-    }
-    .pagination{
-      margin-left: 70px;
-    }
-    #main-image,#maindiv
-    {
-      width: 200px!important;
-      min-width: 300px;
-      max-width: 300px;
-      margin-left:25px;
-    }  
-    .color
-    {
-      font-size: 35px;
-    }
-   }
-  
-   /* @media only screen   
-  and (min-device-width : 280px)   
-  and (max-device-width : 653px)  
-  
-  {   
-    #searchbox
-    {
-      margin-left: 50px;
-      width: 180px;
-    }
-    #cast-img
-    {
-      min-height: 150px;
-      max-height: 150px;
-    }
-    #cast-div
-    {
-      width: 200px!important;
-      min-width: 150px;
-      max-width: 150px;
-      margin-left:4px;
-    }
-    .pagination{
-      margin-left: 10px;
-    }
-    #main-image,#maindiv
-    {
-      width: 200px!important;
-      min-width: 150px;
-      max-width: 150px;
-      margin-left:1px;
-    }  
-    .color
-    {
-      font-size: 35px;
-    }
-    .display-image,.text-color  {
-      width: 100px!important;
       font-size: 14px;
-      }
-      .scroll-menu-arrow {
-        cursor: pointer;
-        font-size:20px;
-        color: red;  
-      }
-      .bg-color
-  {
-    color:white;
-    font-size: 17px;
-  }
-  .padding-btm
-  
-  {
-    margin-bottom: 0px;
-  }
-  .color{
-    font-size: 28px;
-  }
-  
+    }   
   } */
+  /* @media  screen   
+  and (min-device-width : 375px) 
+  {
+    #searchbox
+    {
+      width: 290px!important;
+      margin-left: 30px!important;
+      height:45px
+    }
+    .image-size{
+      height:100px;
+      width: 140px;
+    }
+  }
+  @media  screen   
+  and (min-device-width : 414px) 
+  {
+    
+    .marginLeft
+    {
+      margin-left: 120px;
+    }
+    #searchbox
+    {
+      width: 330px!important;
+      margin-left: 30px!important;
+      height:45px
+    }
+    .image-size{
+      height:100px;
+      width: 140px;
+    }
+    .home-btn
+    {
+      margin-left: 150px!important;
+    }   
+    .fontStyle
+    {
+      font-size: 16px;
+    } 
+  }
+  
+  @media  screen   
+  and (min-device-width : 768px) and (max-device-width:1024px)
+  {
+    .marginLeft
+{
+  margin-left:40px;
+ background:#141414
+}
+.color{
+  font-size: 35px!important;
+  color: white;
+}
+#searchbox
+{
+  width: 650px!important;
+  margin-left: 40px!important;
+  height:45px
+}
+.image-size{
+  height:120px;
+  width: 120px;
+}
+    .scroll-menu-arrow {
+    padding: 5px;
+    cursor: pointer;
+    font-size: 20px;
+  }  
+  .genre-style
+  {
+    margin-top: 15px;
+    font-size:26px;
+    margin-left:50px;
+  }     
+    .home-btn
+    {
+      margin-left: 30px!important;
+    }
+   .tabs
+    {
+     margin-left:50px;
+     font-size:24px;
+     margin-top:20px   
+    }
+    .fontStyle
+    {
+      font-size: 14px;
+    }
+  
+   
+  } */
+  /* @media  screen   
+  and (min-device-width : 1024px) and (max-device-width:1366px)
+  {
+    .marginLeft
+{
+  margin-left:40px;
+ background:#141414
+}
+.color{
+  font-size: 35px!important;
+  color: white;
+}
+#searchbox
+{
+  width: 650px!important;
+  margin-left: 40px!important;
+  height:45px
+}
+.image-size{
+  height:120px;
+  width: 120px;
+}
+    .scroll-menu-arrow {
+    padding: 5px;
+    cursor: pointer;
+    font-size: 20px;
+  }  
+  .genre-style
+  {
+    margin-top: 15px;
+    font-size:26px;
+    margin-left:50px;
+  }     
+    .home-btn
+    {
+      margin-left: 30px!important;
+    }
+   .tabs
+    {
+     margin-left:50px;
+     font-size:30px;
+     margin-top:20px   
+    }
+    .fontStyle
+    {
+      font-size: 16px;
+    }
+  
+   
+  }
+   */
+      
+  /* @media  screen   
+  and (min-device-width : 992px) 
+  {
+    .marginLeft
+{
+  margin-left:40px;
+ background:#141414
+}
+.color{
+  font-size: 42px!important;
+  color: white;
+}
+#searchbox
+{
+  width: 600px!important;
+  margin-left: 40px!important;
+  height:55px
+}
+.image-size{
+  height:200px;
+  width: 200px;
+}
+    .scroll-menu-arrow {
+    padding: 5px;
+    cursor: pointer;
+  }
+  .row1{
+    width: 400px;
+  }
+  
+  .genre-style
+  {
+    margin-top: 15px;
+    font-size:26px;
+    margin-left:50px;
+  }     
+    .home-btn
+    {
+      margin-left: 30px!important;
+    }
+   .tabs
+    {
+     margin-left:50px;
+     font-size:30px;
+     margin-top:20px   
+    }
+    .fontStyle
+    {
+      font-size: 18px;
+    }
+  
+   
+  } */
+  
+
+ 

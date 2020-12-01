@@ -14,41 +14,26 @@ jest.mock("axios", () => {
   };
 });
 
-const axios = require("axios");
-
 describe("ShowConatiner tests", () => {
-  let wrapper = mount(<ShowContainer />);
-  wrapper.setState({
+  let wrapper = mount(<ShowContainer.WrappedComponent />);
+  
+    let history=[]
+  beforeEach(()=>
+{
+   
+   wrapper.setState({
     shows: [
-      { show: { image: { medium: "http://abc" }, rating: { average: 6.5 } } },
-    ],
-    arrowNumber: 3,
-  });
-
-  wrapper.setState({
-    tabsData: [
       {
-        character: { image: { medium: "" } },
-        image: { medium: "dgsdh" },
-        summary: "summary",
-        network: { name: "name", country: { code: "US" } },
-        schedule: { days: ["1"], time: "wyeuywe" },
-        genres: ["drama"],
+        genres: ["Drama", "Action"],
+        rating: { average: 8 },
+        image: { medium: "http://abc" },
+        show: { image: { medium: "http://abc" }, rating: { average: 6.5 } },
       },
     ],
   });
-
  
-  it("test for onShowSelect()", () => {
-    wrapper.setState({
-      searchFlag: true,
-    });
+})
 
-    jest.spyOn(wrapper.instance(), "onShowSelect");
-    const e = { keyCode: 13, target: { value: "dfdf" } };
-    wrapper.instance().onShowSelect(e);
-    expect(wrapper).toBeDefined();
-  });
 
   it("test for fetchShows()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "fetchShows");
@@ -56,52 +41,14 @@ describe("ShowConatiner tests", () => {
     expect(addMock).toHaveBeenCalledWith();
   });
    it("test for filterGenres ()", () => {
-    let wrapper1 = mount(<ShowContainer />);
-    wrapper1.setState({
-      shows: [
-        {
-          genres: ["Drama", "Action"],
-          rating: { average: 8 },
-          image: { medium: "http://abc" },
-          show: { image: { medium: "http://abc" }, rating: { average: 6.5 } },
-        },
-      ],
-    });
-    wrapper1.update();
-    const addMock = jest.spyOn(wrapper1.instance(), "filterGenres");
-    wrapper1.instance().filterGenres();
+    const addMock = jest.spyOn(wrapper.instance(), "filterGenres");
+    wrapper.instance().filterGenres();
     expect(addMock).toHaveBeenCalledWith();
   });
   it("test for setGenre ()", () => {
-    let wrapper1 = mount(<ShowContainer />);
-    wrapper1.setState({
-      shows: [{ genres: ["Drama"], rating: { average: 8 } }],
-    });
-    const addMock = jest.spyOn(wrapper1.instance(), "setGenreType");
-    wrapper1.instance().setGenreType();
+   
+    const addMock = jest.spyOn(wrapper.instance(), "setGenreType");
+    wrapper.instance().setGenreType();
     expect(addMock).toHaveBeenCalledWith();
   });
-});
-
-it("fetch articles on #componentDidMount", () => {
-  const app = mount(<ShowContainer />);
-  app.setState({
-    showData: {
-      image: { medium: "dgsdh" },
-      summary: "summary",
-      network: { name: "name", country: { code: "US" } },
-      schedule: { days: ["1"], time: "wyeuywe" },
-      genres: ["drama"],
-    },
-  });
-  app
-    .instance()
-    .onShowSelect()
-    .then(() => {
-      expect(axios.get).toHaveBeenCalled();
-      expect(axios.get).toHaveBeenCalledWith("articles_url");
-      expect(app.state()).toHaveProperty("articles", [
-        { title: "test article", url: "test url" },
-      ]);
-    });
 });
