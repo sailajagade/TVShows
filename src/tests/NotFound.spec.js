@@ -7,8 +7,12 @@ import NotFound from "../Components/NotFound";
 configure({ adapter: new Adapter() });
 
 describe("NotFound tests", () => {
-    it("test for NotFound()", () => {
-  let wrapper = mount(<NotFound/>);
-    })
-
-})
+  let wrapper = mount(<NotFound history={[]} />);
+  it("test for component mount()", () => {
+    expect(wrapper).toBeDefined();
+  });
+  it("test for routeToMain()", () => {
+    wrapper.instance().routeToMain();
+    expect(wrapper).toBeDefined();
+  });
+});

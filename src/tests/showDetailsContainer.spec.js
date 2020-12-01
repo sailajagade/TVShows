@@ -5,12 +5,17 @@ import { configure } from "enzyme";
 import { mount } from "enzyme";
 import ShowDetailsConatiner from "../Containers/DisplayShowDetailsContainer";
 configure({ adapter: new Adapter() });
+jest.mock("axios", () => {
+  const exampleArticles = [{ title: "test article", url: "test url" }];
+
+  return {
+    get: jest.fn(() => Promise.resolve(exampleArticles)),
+  };
+});
 
 describe("Showdetailscontainer tests", () => {
- 
-    let history=[]
-  let wrapper = mount(<ShowDetailsConatiner  history={history}
-       />);
+  let history = [];
+  let wrapper = mount(<ShowDetailsConatiner history={history} />);
   wrapper.setState({
     shows: [
       { show: { image: { medium: "http://abc" }, rating: { average: 6.5 } } },
@@ -38,36 +43,41 @@ describe("Showdetailscontainer tests", () => {
       },
     ],
   });
- 
+
   wrapper.setState({
     castData: [
       {
-        character: { image: { medium: "" } }
-       
+        character: { image: { medium: "" } },
       },
     ],
   });
   wrapper.setState({
     crewData: [
       {
-        person: { image: { medium: "" } }
-       
+        person: { image: { medium: "" } },
       },
     ],
   });
   wrapper.setState({
     galleryData: [
       {
-        resolutions: { image: { medium: "" } }
-       
+        resolutions: { image: { medium: "" } },
       },
     ],
   });
-
-   it("test for  routeBack ()", () => {
+  it("test for component render()", () => {
+    expect(wrapper).toBeDefined();
+  });
+  it("test for  routeBack ()", () => {
     wrapper.setProps({ fetchShows: jest.fn() });
     const addMock = jest.spyOn(wrapper.instance(), "routeback");
     wrapper.instance().routeback();
+    expect(addMock).toHaveBeenCalledWith();
+  });
+  it("test for  routeToDetails ()", () => {
+    wrapper.setProps({ fetchShows: jest.fn() });
+    const addMock = jest.spyOn(wrapper.instance(), "routeToDetails");
+    wrapper.instance().routeToDetails();
     expect(addMock).toHaveBeenCalledWith();
   });
 });

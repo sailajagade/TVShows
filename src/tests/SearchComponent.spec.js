@@ -12,17 +12,15 @@ jest.mock("axios", () => {
   };
 });
 
-
 describe("SearchComponent tests", () => {
-  
-    let history=[]
+  let history = [];
   let wrapper = shallow(<SearchComponent.WrappedComponent history={history} />);
-  
+
   it("test for component render", () => {
     wrapper.find("#searchbox").simulate("keyUp");
     expect(wrapper).toBeDefined();
   });
-  
+
   it("test for fetchShows()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "fetchShows");
     wrapper.instance().fetchShows();
@@ -34,6 +32,4 @@ describe("SearchComponent tests", () => {
     wrapper.instance().onShowSearch(e);
     expect(addMock).toHaveBeenCalledWith(e);
   });
-
-  
-})
+});

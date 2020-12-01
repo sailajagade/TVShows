@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Shows from "../Components/DisplayShows";
-import {fetchShow} from "./CommonMethods";
-import { withRouter } from 'react-router-dom';
+import { fetchShow } from "./CommonMethods";
+import { withRouter } from "react-router-dom";
 class showContainer extends Component {
   constructor(props) {
     super(props);
@@ -12,21 +12,22 @@ class showContainer extends Component {
       tabsData: [],
       searchFlag: false,
       genreTypes: [],
-      popularshows: []
+      popularshows: [],
     };
-   
+    this.mounted=true
   }
 
   componentDidMount = () => {
-        this.fetchShows();
+    this.mounted&&this.fetchShows();
   };
   fetchShows = () => {
-    let allShows=fetchShow()
-    allShows.then((res) => {
-      this.setState(
+    let allShows = fetchShow();
+    allShows
+      .then((res) => {
+        this.setState(
           {
             shows: res.data,
-            searchFlag: false
+            searchFlag: false,
           },
           this.setGenreType
         );
@@ -63,7 +64,7 @@ class showContainer extends Component {
             if (genreTypes.includes(genre)) {
               newState.showsObj[genre].push(show);
 
-             this.setState(newState);
+              this.setState(newState);
             }
             return "";
           });
@@ -71,39 +72,38 @@ class showContainer extends Component {
         return "";
       });
   };
-    render() {
-    const {
-      shows,
-      showsObj,
-      searchFlag,
-      popularshows,
-    } = this.state;
+  componentWillUnmount=()=>
+  {
+    this.mounted=false
+  }
+  render() {
+    const { shows, showsObj, searchFlag, popularshows } = this.state;
     return (
-        <Fragment>
-          <div  key="popular">
+      <Fragment>
+        <div key="popular">
+          <Shows
+            currentPosts={popularshows}
+            shows={shows}
+            genre="Popular"
+            searchFlag={false}
+            fetchShows={this.fetchShows}
+            history={this.props.history}
+          />
+        </div>
+        {!searchFlag &&
+          Object.keys(showsObj).map((genre) => (
             <Shows
-              currentPosts={popularshows}
+              key={genre}
+              currentPosts={showsObj[genre].length > 0 && showsObj[genre]}
               shows={shows}
-              genre="Popular"
               searchFlag={false}
-              fetchShows={this.fetchShows}
+              genre={genre}
               history={this.props.history}
+              fetchShows={this.fetchShows}
             />
-          </div>
-            {!searchFlag &&
-              Object.keys(showsObj).map((genre) => (
-                <Shows
-                  key={genre}
-                  currentPosts={showsObj[genre].length > 0 && showsObj[genre]}
-                  shows={shows}
-                  searchFlag={false}
-                  genre={genre}
-                  history={this.props.history}
-                  fetchShows={this.fetchShows}
-                />
-              ))}
-        </Fragment>
-          );
+          ))}
+      </Fragment>
+    );
   }
 }
 

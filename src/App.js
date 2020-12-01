@@ -8,12 +8,13 @@ import DisplayShowDetailsContainer from './Containers/DisplayShowDetailsContaine
 import EpisodesComponent from './Components/Tabs/EpisodesComponent';
 import SearchComponent from './Components/SearchComponent';
 import NotFound from './Components/NotFound';
+import ShowAll from './Components/ShowAll';
 class App extends Component {
   render() {
    
     return ( 
     <HashRouter>
-      <div >
+      <div className="body">
       <SearchComponent/>
     <Switch>
   
@@ -21,6 +22,7 @@ class App extends Component {
     <Route path="/showdetails/:searchvalue" exact component={DisplayShowDetailsContainer} />
     <Route path="/Episode" exact component={EpisodesComponent} />
     <Route path="/displayShows/:searchvalue" exact component={DisplayShows} />
+    <Route path="/showAll" exact component={ShowAll} />
     <Route component={NotFound}/>
   </Switch>
   </div>

@@ -1,18 +1,27 @@
-
-
 .fa-home
 {
   font-size: 35px;
 }
-
 .home-btn{
     color: white;
     font-size: 20px;  
     width: 60px; 
-    
+    margin-left:40px    
 }
 .nav{
   background:rgb(34, 37, 57);
+}
+#more
+{
+  font-size: 20px;
+}
+.details
+{
+  background: #eee;
+}
+.show-info
+{
+  margin-left:10px;
 }
 .center
 {
@@ -21,40 +30,32 @@
   font-size: 30px;
   width:90%
 }
-
-
 .card {
-  background-color: #fff;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
-
-
-  .search-box{
-  display: flex;
-  background: #fff;
-  /* border-radius: 10px; */
-  overflow: hidden;
-  }
-  
-  .form-control, .search-box
+.search-box
   {
-    width:80%;
-  border: 0;
+    display: flex;
+    background: #fff;
+    overflow: hidden;
+    margin-left:10%;
+    margin-bottom:20px;
+    margin-top:10px;
+    width:82%;  
   height: 46px;
-  padding:0 10px;
   outline: 0;
-  margin:0px
-  }
   
-  .search-box .btn{
-  background: #fff;
-  border:1px solid #000;
-  height: 36px;
-  padding: 10px;
-  margin-right: 10px;
-  border: 0;
-  cursor: pointer;
-  outline: 0;
+  }
+  #searchbox
+  {
+    width: 100%;
+    border: 0;
+    background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    text-indent: 18px!important;
+    background-size: 26px!important;
+    background-position: right center;
   }
   .fa-search{
     font-size: x-large;
@@ -66,4 +67,229 @@
     margin-left: 10px;
     margin-right: 10px;
   }
+  .color
+  {
+    color:maroon
+  }
+  .maindiv
+  {
+    margin-left:45px;
+    margin-right:45px
+  }
+  .arrow-prev,.arrow-next
+  {
+    cursor: pointer;
+  }
+  .card {
+    background-color: white;
+    margin: 0px;
+    flex: 2;
+    border: 1px solid lightgrey;
+    display: flex; 
+  } 
+  .card-block {
+    padding: 10px;
+    background-color: #fff;
+    flex: 1; 
+  }
+  .genre-style
+  {
+    margin-left:60px;
+    margin-top:10px
+  }
+ .scroll-menu-arrow--disabled {
+    visibility: hidden;
+  }
+  @media  screen   
+  and (max-device-width : 500px) 
+  {
+    #more
+    {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    .margin
+    {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+    .details
+    {
+      width:250px;
+    }
+    body {
+      overflow-x: hidden!important;
+  width: 100%!important;
+    };
+    .search-box
+    {
+      margin-left: 10%;
+    }
+    .Tvshows
+    {
+      margin-left: 20%;
+      font-size: 10px;
+    }
+    h1
+    {
+      font-size: 30px;
+    }
+    .img{
+      width: 140px;
+      height:120px
+    }
+    .showAll{
+      width: 120px;
+      height:120px;
+      /* margin-left: 50px; */
+    }
+    .show-margin
+    {
+      margin-left: 40px;
+      /* margin-right: 30px; */
+      margin-top: 20px;
+    }
+    .rating
+    {
+     font-size:small
+    }
+    .genre-style
+    {
+      font-size: 20px;
+    }
+    .cast
+    {
+      width:180px;
+      height:270px
+    }
+    .gallery
+    {
+      width:180px;
+    }
+    .main{
+      width:200px;
+      height:200px
+    }
+    .fontSize
+    {
+      font-size: 14px;
+    }
+    .body
+    {
+      overflow-x: hidden;
+    }
+    .center
+  {
+    text-align: center;
+    padding: 100px 0px 0px 0px;
+    
+    font-size: 20px;
+    width:90%
+  }
+  }
+  @media  screen   
+  and (min-device-width : 768px) 
+  {
+    
+    body {
+      overflow-x: hidden!important;
+  width: 100%!important;
+    };
+    .cast
+    {
+      width:200px;
+      height:300px
+    }
+    h1
+    {
+      font-size: 45px;
+    }
+    .Tvshows
+    {
+      margin-left: 50px;
+    }
+    .genre-style
+    {
+      font-size: 25px;
+    }
+    .img{
+      width: 180px;
+      height:180px
+    }
+    .showAll
+    {
+      width: 200px;
+      height:200px;
+    }
+    .show-margin
+    {
+      margin-left: 50px;
+      margin-right: 90px;
+      margin-top:20px
+    }
+    .rating
+    {
+     font-size:larger
+    }
+    .search-box
+    {
+      width: 90%;
+    }
+    
+  }
+  @media screen and (min-device-width : 1024px) and (max-device-width : 1024px) and (min-device-height : 1366px) and (max-device-height : 1366px) and (min-width: 1024px) and (max-width: 1024px)
+  {    
+    .summary
+    {
+      margin-left: 170px;
+    }
+    .scroll-menu-arrow
+    {
+      font-size: 25px;
+    }
+    .showAll
+    {
+      width: 120px;
+      height:200px;
+    }
+    .show-margin
+    {
+      margin-left: 50px;
+      margin-top:20px
+    }
+  }
+  @media only screen and (min-device-width: 768px) and (max-device-width : 1010px) 
+  {    
+    h1
+    {
+      font-size: 30px;
+    }
+    .img{
+      width: 150px;
+      height:120px
+    }
+    .genre-style
+    {
+      font-size: 20px;
+    }
+    .cast
+    {
+      width:180px;
+      height:270px
+    }
+    .main{
+      width:150px;
+      height:200px
+    }
+    .gallery
+    {
+      width:180px;
+    }
+    .scroll-menu-arrow
+
+    {
+      font-size: 20px;
+    }
+  }
+  
   

@@ -3,7 +3,7 @@ import { SHOW_SELECT } from "../Api/Url";
 import { getData } from "../Api/Api";
 import DisplayShowDetails from "../Components/DisplayShowDetails";
 
-import {onSelect} from "./CommonMethods";
+import { onSelect } from "./CommonMethods";
 
 class displayShowDetailsContainer extends Component {
   constructor(props) {
@@ -12,34 +12,38 @@ class displayShowDetailsContainer extends Component {
       searchFlag: false,
     };
   }
-  componentDidMount=()=> 
-  {
+  componentDidMount = () => {
     const Url = window.location.hash.split("/");
-    let selectData=onSelect(Url[Url.length-1]); 
-    const episodeUrl =  SHOW_SELECT + Url[Url.length-1]+ "/episodes" ;
-    const castUrl =SHOW_SELECT + Url[Url.length-1]+ "/cast" ;
-    const crewUrl =SHOW_SELECT + Url[Url.length-1]+ "/crew" ;
-    const galleryUrl =SHOW_SELECT + Url[Url.length-1]+ "/images" ;
+    let selectData = onSelect(Url[Url.length - 1]);
+    const episodeUrl = SHOW_SELECT + Url[Url.length - 1] + "/episodes";
+    const castUrl = SHOW_SELECT + Url[Url.length - 1] + "/cast";
+    const crewUrl = SHOW_SELECT + Url[Url.length - 1] + "/crew";
+    const galleryUrl = SHOW_SELECT + Url[Url.length - 1] + "/images";
 
-    Promise.all([  getData(episodeUrl), getData(castUrl),getData(crewUrl), getData(galleryUrl)]).then((values) => {
-     this.setState({
-       episodeData:(values[0].data),castData:(values[1].data),
-       crewData:(values[2].data),galleryData:(values[3].data)
-      } )
-     
+    Promise.all([
+      getData(episodeUrl),
+      getData(castUrl),
+      getData(crewUrl),
+      getData(galleryUrl),
+    ]).then((values) => {
+      this.setState({
+        episodeData: values[0].data,
+        castData: values[1].data,
+        crewData: values[2].data,
+        galleryData: values[3].data,
+      });
     });
-   
+
     selectData.then((res) => {
-         this.setState(
-           {
-             showData: res.data,
-             showName:Url[Url.length-1]
-           },
-           this.routeToDetails
-         );
-       })
-  
-      }
+      this.setState(
+        {
+          showData: res.data,
+          showName: Url[Url.length - 1],
+        },
+        this.routeToDetails
+      );
+    });
+  };
   routeToDetails = () => {
     this.props.history.push({
       pathname: `/showdetails/${this.state.showName}`,
@@ -50,9 +54,6 @@ class displayShowDetailsContainer extends Component {
       },
     });
   };
-  paginate = (pageNumber) => {
-    this.setState({ currentPage: pageNumber });
-  };
 
   routeback = () => {
     this.setState({
@@ -62,7 +63,7 @@ class displayShowDetailsContainer extends Component {
   };
 
   render() {
-    const { episodeData,castData,crewData,galleryData } = this.state;
+    const { episodeData, castData, crewData, galleryData } = this.state;
     return (
       <div>
         <DisplayShowDetails
