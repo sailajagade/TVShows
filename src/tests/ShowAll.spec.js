@@ -6,11 +6,12 @@ import { mount } from "enzyme";
 import ShowAll from "../Components/ShowAll";
 configure({ adapter: new Adapter() });
 describe("ShowAll tests", () => {
+  
   it("test for component showAll ()", () => {
     let currentPosts = [{ image: { medium: "1" }, rating: { average: 7 } }];
     let location = {
       state: {
-        currentPosts: [{ show: { id: "1", rating: { average: 7 } } }],
+        currentPosts: [{ image: { medium: "1" }, rating: { average: 7 } }],
       },
     };
     let history = [];

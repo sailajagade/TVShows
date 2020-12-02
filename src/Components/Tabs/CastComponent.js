@@ -1,16 +1,15 @@
 import React from "react";
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import noimgfound from "../../images/noimg.png";
+import { isMobileOnly } from "react-device-detect";
 
 import "../../Css/Shows.css";
-
 import "../../App.css";
-import { isMobileOnly } from "react-device-detect";
+
 
 const MenuItem = ({ text }) => {
   return (
     <div className="container">
-      <div className="card-group">
         <div className="card cast">
           {text.character.image ? (
             <img
@@ -18,7 +17,7 @@ const MenuItem = ({ text }) => {
               width="200px"
               height="160px"
               src={text.character.image.medium}
-              alt="Card  cap"
+              alt="No Data"
             />
           ) : (
             <img
@@ -39,7 +38,6 @@ const MenuItem = ({ text }) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
@@ -76,18 +74,20 @@ const CastComponent = (props) => {
     alignCenter: true,
     hideArrows: true,
     hideSingleArrow: true,
+    clickWhenDrag: true,
   };
   let menuItems = tabsData && Menu(tabsData.slice(0, tabsData.length));
   const menu = menuItems;
   return (
     <ScrollMenu
-      scrollBy={isMobileOnly ? 1 : 6}
+      scrollBy={isMobileOnly ? 1 : 5}
       alignCenter={false}
       arrowLeft={ArrowLeft}
       arrowRight={ArrowRight}
       data={menu}
       hideArrows={state.hideArrows}
       hideSingleArrow={state.hideSingleArrow}
+      clickWhenDrag={state.clickWhenDrag}
     />
   );
 };

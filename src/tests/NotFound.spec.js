@@ -8,9 +8,11 @@ configure({ adapter: new Adapter() });
 
 describe("NotFound tests", () => {
   let wrapper = mount(<NotFound history={[]} />);
+ 
   it("test for component mount()", () => {
     expect(wrapper).toBeDefined();
   });
+
   it("test for routeToMain()", () => {
     wrapper.instance().routeToMain();
     expect(wrapper).toBeDefined();

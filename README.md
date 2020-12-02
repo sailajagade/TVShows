@@ -19,7 +19,8 @@ Here you can see the tech stack used to develop this project
 ```
 
 ### React
-After working with other frameworks such as Angular.js , I've chosen ReactJs because it's a framework that leads you to improve the structure of your code. It is based on Virtual Dom, which is the major advantage with ReactJs.
+After working with other frameworks such as Angular.js , I've chosen ReactJs because it's a framework  that allows one-way data binding and encourages the practice of virtual Document Object Model.
+React also allows the implementation of the JSX that helps in structuring the component rendering.
 
 
 ## Project setup

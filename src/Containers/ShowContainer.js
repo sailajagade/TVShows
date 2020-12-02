@@ -9,16 +9,15 @@ class showContainer extends Component {
       showsObj: {},
       shows: [],
       showData: [],
-      tabsData: [],
       searchFlag: false,
       genreTypes: [],
       popularshows: [],
     };
-    this.mounted=true
+    this.mounted = true;
   }
 
   componentDidMount = () => {
-    this.mounted&&this.fetchShows();
+    this.mounted && this.fetchShows();
   };
   fetchShows = () => {
     let allShows = fetchShow();
@@ -72,10 +71,9 @@ class showContainer extends Component {
         return "";
       });
   };
-  componentWillUnmount=()=>
-  {
-    this.mounted=false
-  }
+  componentWillUnmount = () => {
+    this.mounted = false;
+  };
   render() {
     const { shows, showsObj, searchFlag, popularshows } = this.state;
     return (

@@ -10,15 +10,14 @@ import { isMobileOnly } from "react-device-detect";
 const MenuItem = ({ post }) => {
   return (
     <div className="container">
-      <div className="card-group">
         <div className="card gallery">
           {post.resolutions.medium ? (
             <img
-              className="card-img-top "
+              className="card-img-top  "
               src={post.resolutions.medium.url}
               width="200px"
               height="200px"
-              alt="Card  cap"
+              alt="No Data"
             />
           ) : (
             <img
@@ -31,7 +30,6 @@ const MenuItem = ({ post }) => {
           )}
         </div>
       </div>
-    </div>
   );
 
   // return <div  className={` flex row flex-no-wrap w-1/2 sm:w-1/2 md:w-1/3 xs:w-1/6 flex flex-col p-3  `}
@@ -110,6 +108,7 @@ const GalleryComponent = (props) => {
     alignCenter: true,
     hideArrows: true,
     hideSingleArrow: true,
+    clickWhenDrag: true,
   };
   let menuItems = tabsData && Menu(tabsData.slice(0, tabsData.length));
   const menu = menuItems;
@@ -121,6 +120,7 @@ const GalleryComponent = (props) => {
       data={menu}
       hideArrows={state.hideArrows}
       hideSingleArrow={state.hideSingleArrow}
+      clickWhenDrag={state.clickWhenDrag}
       scrollBy={isMobileOnly ? 1 : 6}
     />
   );

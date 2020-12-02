@@ -3,27 +3,27 @@ import ScrollMenu from "react-horizontal-scrolling-menu";
 import { isMobileOnly } from "react-device-detect";
 import noimgfound from "../images/noimg.png";
 import { onShowSearchData } from "../Containers/CommonMethods";
+import NotFound from "./NotFound";
 
 import "../Css/Shows.css";
 import "../App.css";
-import NotFound from "./NotFound";
 
-const MenuItem = ({ text, selected, onShowSelect }) => {
+
+const MenuItem = ({ text, onShowSelect }) => {
   return (
     <div
-      className={`menu-item ${selected ? "active" : ""}`}
-      onClick={() => onShowSelect(text.id)}
-    >
+      className={`menu-item`}
+      onClick={() => onShowSelect(text.id)}>
       <div className="p-3">
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-cover h-48">
+        <div className="bg-white rounded-lg shadow-lg ">
+          <div className="bg-cover">
             {text.image ? (
               <img
                 className="img"
                 src={text.image && text.image.medium}
                 width="200px"
                 height="200px"
-                alt="no data"
+                alt="No Data"
               />
             ) : (
               <img
@@ -31,11 +31,11 @@ const MenuItem = ({ text, selected, onShowSelect }) => {
                 src={noimgfound}
                 width="200px"
                 height="200px"
-                alt="no data"
+                alt="No Data"
               />
             )}
           </div>
-          <div className="p-4" style={{ fontSize: "larger" }}>
+          <div className="p-4">
             Rating: {text.rating && text.rating.average}
           </div>
         </div>
@@ -53,7 +53,6 @@ export const Menu = (list, onShowSelect, searchFlag) =>
         <MenuItem
           text={searchFlag ? el.show : el}
           key={index}
-          selected={index}
           onShowSelect={onShowSelect}
         />
       </div>
@@ -85,18 +84,14 @@ class displayShows extends Component {
   }
   state = {
     mounted: true,
-    selected: "",
-    arrowNumber: 1,
     searchPosts: [],
     shows: [],
     showData: [],
     showName: "",
     alignCenter: true,
-    clickWhenDrag: false,
-    dragging: true,
     hideArrows: true,
     hideSingleArrow: true,
-    wheel: true,
+    clickWhenDrag: true,
   };
 
   componentDidMount = () => {
@@ -133,17 +128,18 @@ class displayShows extends Component {
     });
   };
   routeback = () => {
-   this.mounted&& this.setState({
-      searchFlag: false,
-    });
+    this.mounted &&
+      this.setState({
+        searchFlag: false,
+      });
     this.props.history.push({ pathname: "/" });
   };
   componentWillUnmount = () => {
     this.mounted = false;
   };
- 
+
   render() {
-    const { hideArrows, hideSingleArrow } = this.state;
+    const { hideArrows, hideSingleArrow, clickWhenDrag } = this.state;
     const { searchFlag = true, currentPosts, genre } = this.props.location
       ? this.props.location.state !== undefined
         ? this.props.location.state
@@ -172,20 +168,13 @@ class displayShows extends Component {
           </nav>
         ) : (
           <div className="row">
-            <div className="col-lg-10 col-8 col-md-10">
-              <h3
-                className="genre-style"
-                style={{
-                  marginLeft: "60px",
-                  marginTop: "10px",
-                  marginBottom: "0px",
-                }}
-              >
+            <div className="col-lg-11 col-8 col-md-10">
+              <h3 className="genre-style">
                 {" "}
                 <b> {genre} Shows </b>
               </h3>
             </div>
-            <div className="col-lg-2 col-4 more col-md-2">
+            <div className="col-lg-1 col-4 more col-md-2">
               <button
                 className="btn btn-link"
                 id="more"
@@ -193,7 +182,7 @@ class displayShows extends Component {
                   this.showAll(currentPosts);
                 }}
               >
-                More
+                See All
               </button>
             </div>
           </div>
@@ -210,6 +199,7 @@ class displayShows extends Component {
           data={menu}
           hideArrows={hideArrows}
           hideSingleArrow={hideSingleArrow}
+          clickWhenDrag={clickWhenDrag}
           scrollBy={isMobileOnly ? 1 : 6}
         />
       </div>

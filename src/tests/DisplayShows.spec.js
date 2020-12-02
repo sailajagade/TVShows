@@ -1,7 +1,6 @@
 import React from "react";
 import Adapter from "enzyme-adapter-react-16";
 import { configure } from "enzyme";
-
 import { mount } from "enzyme";
 import DisplayShows from "../Components/DisplayShows";
 configure({ adapter: new Adapter() });
@@ -29,6 +28,7 @@ describe("DisplayShows tests", () => {
       showAll={jest.fn()}
     />
   );
+  
   it("test for component mount()", () => {
     expect(wrapper).toBeDefined();
   });

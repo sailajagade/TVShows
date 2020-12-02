@@ -29,19 +29,23 @@ describe("ShowConatiner tests", () => {
       ],
     });
   });
+  
   it("test for component mount()", () => {
     expect(wrapper).toBeDefined();
   });
+  
   it("test for fetchShows()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "fetchShows");
     wrapper.instance().fetchShows();
     expect(addMock).toHaveBeenCalledWith();
   });
+  
   it("test for filterGenres ()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "filterGenres");
     wrapper.instance().filterGenres();
     expect(addMock).toHaveBeenCalledWith();
   });
+  
   it("test for setGenre ()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "setGenreType");
     wrapper.instance().setGenreType();

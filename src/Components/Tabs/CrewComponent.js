@@ -9,7 +9,6 @@ import { isMobileOnly } from "react-device-detect";
 const MenuItem = ({ text }) => {
   return (
     <div className="container">
-      <div className="card-group">
         <div className="card cast">
           {text.person.image ? (
             <img
@@ -17,7 +16,7 @@ const MenuItem = ({ text }) => {
               src={text.person.image.medium}
               width="200px"
               height="170px"
-              alt="Card  cap"
+              alt="No Data"
             />
           ) : (
             <img
@@ -36,7 +35,6 @@ const MenuItem = ({ text }) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
@@ -74,18 +72,20 @@ const CrewComponent = (props) => {
     alignCenter: true,
     hideArrows: true,
     hideSingleArrow: true,
+    clickWhenDrag: true,
   };
   let menuItems = tabsData && Menu(tabsData.slice(0, tabsData.length));
   const menu = menuItems;
   return (
     <ScrollMenu
-      scrollBy={isMobileOnly ? 1 : 6}
+      scrollBy={isMobileOnly ? 1 : 7}
       alignCenter={false}
       arrowLeft={ArrowLeft}
       arrowRight={ArrowRight}
       data={menu}
       hideArrows={state.hideArrows}
       hideSingleArrow={state.hideSingleArrow}
+      clickWhenDrag={state.clickWhenDrag}
     />
   );
 };

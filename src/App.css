@@ -1,7 +1,5 @@
-/* demo shizzle only */
 body {
   background: #eee;
-overflow-x: hidden!important;
-width: 100%!important;
+  overflow-x: hidden !important;
+  width: 100% !important;
 }
-

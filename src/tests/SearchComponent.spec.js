@@ -26,6 +26,7 @@ describe("SearchComponent tests", () => {
     wrapper.instance().fetchShows();
     expect(addMock).toHaveBeenCalledWith();
   });
+  
   it("test for onShowSearch ()", () => {
     const addMock = jest.spyOn(wrapper.instance(), "onShowSearch");
     const e = { keyCode: 13, target: { value: "dfdf" } };

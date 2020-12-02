@@ -51,7 +51,7 @@ class SearchComponent extends Component {
   render() {
     return (
       <div className="nav">
-        <div className="col-lg-3 col-md-3 mt-3 Tvshows">
+        <div className="col-lg-3 col-md-4 mt-3 Tvshows">
           <b>
             <h1 className=" color">TV Shows</h1>
           </b>

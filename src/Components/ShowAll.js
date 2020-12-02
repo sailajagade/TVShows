@@ -12,21 +12,19 @@ class ShowAll extends Component {
           </li>
         </nav>
 
-        <div className="">
-          <div className="card-group">
             <div className="card ">
               <div className="row show-margin">
                 {currentPosts &&
                   currentPosts.map((text, index) => (
                     <div
-                      className=" col-5 col-lg-2 col-md-4"
+                      className=" col-6 col-lg-2 col-md-3"
                       key={index}
                       onClick={() => onShowSelect(text.id)}
                     >
                       <img
                         className="card-img-top showAll"
                         src={text.image && text.image.medium}
-                        alt="Card  cap"
+                        alt="No Data"
                       />
                       <div className="card-block">
                         <div className="p-2 rating">
@@ -38,8 +36,6 @@ class ShowAll extends Component {
               </div>
             </div>
           </div>
-        </div>
-      </div>
     );
   }
 }

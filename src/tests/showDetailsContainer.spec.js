@@ -65,15 +65,18 @@ describe("Showdetailscontainer tests", () => {
       },
     ],
   });
+  
   it("test for component render()", () => {
     expect(wrapper).toBeDefined();
   });
+  
   it("test for  routeBack ()", () => {
     wrapper.setProps({ fetchShows: jest.fn() });
     const addMock = jest.spyOn(wrapper.instance(), "routeback");
     wrapper.instance().routeback();
     expect(addMock).toHaveBeenCalledWith();
   });
+ 
   it("test for  routeToDetails ()", () => {
     wrapper.setProps({ fetchShows: jest.fn() });
     const addMock = jest.spyOn(wrapper.instance(), "routeToDetails");

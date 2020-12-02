@@ -11,9 +11,18 @@
 .nav{
   background:rgb(34, 37, 57);
 }
+.Tvshows
+{
+  margin-left: 50px;
+}
 #more
 {
   font-size: 20px;
+}
+.show-margin
+{
+  margin-left: 50px;
+  margin-right: 50px;
 }
 .details
 {
@@ -62,7 +71,7 @@
   }
   .scroll-menu-arrow {
     cursor: pointer;
-    font-size:3vh;
+    font-size:2vh;
     color: #141414;  
     margin-left: 10px;
     margin-right: 10px;
@@ -105,8 +114,10 @@
   {
     #more
     {
-      font-size: 12px;
+      font-size: 14px;
       margin-top: 5px;
+      padding-left: 0px;
+      padding-right: 0px;
     }
     .margin
     {
@@ -119,7 +130,6 @@
     }
     body {
       overflow-x: hidden!important;
-  width: 100%!important;
     };
     .search-box
     {
@@ -141,12 +151,11 @@
     .showAll{
       width: 120px;
       height:120px;
-      /* margin-left: 50px; */
     }
     .show-margin
     {
       margin-left: 40px;
-      /* margin-right: 30px; */
+      margin-right: 30px;
       margin-top: 20px;
     }
     .rating
@@ -176,7 +185,7 @@
     }
     .body
     {
-      overflow-x: hidden;
+      overflow-x: hidden!important;
     }
     .center
   {
@@ -186,80 +195,18 @@
     font-size: 20px;
     width:90%
   }
-  }
-  @media  screen   
-  and (min-device-width : 768px) 
+  .scroll-menu-arrow
   {
-    
-    body {
-      overflow-x: hidden!important;
-  width: 100%!important;
-    };
-    .cast
-    {
-      width:200px;
-      height:300px
-    }
-    h1
-    {
-      font-size: 45px;
-    }
-    .Tvshows
-    {
-      margin-left: 50px;
-    }
-    .genre-style
-    {
-      font-size: 25px;
-    }
-    .img{
-      width: 180px;
-      height:180px
-    }
-    .showAll
-    {
-      width: 200px;
-      height:200px;
-    }
-    .show-margin
-    {
-      margin-left: 50px;
-      margin-right: 90px;
-      margin-top:20px
-    }
-    .rating
-    {
-     font-size:larger
-    }
-    .search-box
-    {
-      width: 90%;
-    }
-    
+    font-size: 15px;
   }
-  @media screen and (min-device-width : 1024px) and (max-device-width : 1024px) and (min-device-height : 1366px) and (max-device-height : 1366px) and (min-width: 1024px) and (max-width: 1024px)
-  {    
-    .summary
-    {
-      margin-left: 170px;
-    }
-    .scroll-menu-arrow
-    {
-      font-size: 25px;
-    }
-    .showAll
-    {
-      width: 120px;
-      height:200px;
-    }
-    .show-margin
-    {
-      margin-left: 50px;
-      margin-top:20px
-    }
   }
+
+  /*tablet*/
   @media only screen and (min-device-width: 768px) and (max-device-width : 1010px) 
-  {    
+  {   
+    .body {
+      overflow-x: hidden!important;
+    }; 
     h1
     {
       font-size: 30px;
@@ -274,7 +221,7 @@
     }
     .cast
     {
-      width:180px;
+      width:150px;
       height:270px
     }
     .main{
@@ -283,13 +230,117 @@
     }
     .gallery
     {
-      width:180px;
+      width:150px;
     }
     .scroll-menu-arrow
 
     {
-      font-size: 20px;
+      font-size: 15px;
+    }
+    .showAll
+    {
+      width: 150px;
+      height:180px
+    }
+    .show-margin
+    {
+      margin-left: 50px;
+      margin-right: 50px;
+    }
+    .Tvshows
+    {
+      margin-left: 50px;
     }
   }
+   
+
+@media only screen and (min-device-width: 1011px) and (max-device-width : 1024px)
+{
+  .body {
+    overflow-x: hidden!important;
+  }; 
+  .Tvshows
+  {
+    margin-left: 50px;
+  }
+  #more
+  {
+    font-size: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .summary
+  {
+    margin-left: 140px;
+  }
+  .cast{
+    width: 150px;
+    height: 280px;
+  }
+  .main{
+    width: 200px;
+    height: 300px;
+  }
+  .img,.gallery{
+    width: 150px;
+    height: 150px;
+  }
+  .scroll-menu-arrow
+  {
+    font-size: 12px;
+  }
+  .genre-style {
+    font-size: 20px;
+    margin-top:10px;
+    margin-bottom: 0px
+  };
+}
+@media  screen   
+and (min-device-width : 1025px) 
+{
   
+  .body {
+    overflow-x: hidden!important;
+  };
+  .cast,.gallery
+  {
+    width:180px;
+    height:300px
+  }
+  h1
+  {
+    font-size: 45px;
+  }
+  .Tvshows
+  {
+    margin-left: 50px;
+  }
+  .genre-style
+  {
+    font-size: 25px;
+  }
+  .img{
+    width: 180px;
+    height:180px
+  }
+  .showAll
+  {
+    width: 180px!important;
+    height:180px!important;
+  }
+  .show-margin
+  {
+    margin-left: 50px;
+    margin-right: 90px;
+    margin-top:20px
+  }
+  .rating
+  {
+   font-size:larger
+  }
+  .search-box
+  {
+    width: 90%;
+  }
   
+}

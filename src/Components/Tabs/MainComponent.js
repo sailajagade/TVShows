@@ -1,27 +1,25 @@
 import React from "react";
 import "../../Css/Shows.css";
 
-
 const MainComponent = (props) => {
   const { showData } = props;
   return (
     <div className="row maindiv ">
-      <div className="col-lg-1 col-sm-6 tags p-b-2 mb-3">
+      <div className="col-lg-1 col-12 p-b-2 mb-3">
         <img
           alt="img"
           className="main"
           src={showData && showData.image && showData.image.medium}
         />
       </div>
-      <div className="col-lg-5  offset-lg-1 mb-3 summary ">
+      <div className="col-lg-5 col-12 offset-lg-1 mb-3 summary ">
         <div className="fontSize">
           {showData &&
             showData.summary &&
             showData.summary.replace(/<[^>]+>/g, "")}
         </div>
       </div>
-      <div className="col-lg-3 ">
-        <div className="card-group">
+      <div className="col-lg-3 col-12 ">
           <div className="card details">
             <div className="show-info">
               <div className="mb-3">
@@ -55,8 +53,7 @@ const MainComponent = (props) => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+            </div>
     </div>
   );
 };

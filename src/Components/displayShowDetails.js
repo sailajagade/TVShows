@@ -5,10 +5,14 @@ import EpisodesComponent from "./Tabs/EpisodesComponent";
 import GalleryComponent from "./Tabs/GalleryComponent";
 import MainComponent from "./Tabs/MainComponent";
 import "../Css/Shows.css";
-;
-
 function DisplayShowDetails(props) {
-  const { showData, episodeData, castData, crewData, galleryData } = props;
+  const {
+    showData,
+    episodeData,
+    castData,
+    crewData,
+    galleryData,
+  } = props;
 
   return (
     <div>
@@ -27,7 +31,7 @@ function DisplayShowDetails(props) {
       </h3>
       <CastComponent showData={showData} tabsData={castData} />
       <h3 className="genre-style">
-        <b> Crew</b>
+        <b> Crew </b>
       </h3>
       <CrewComponent showData={showData} tabsData={crewData} />
       <h3 className="genre-style">
